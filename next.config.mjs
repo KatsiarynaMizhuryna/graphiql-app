@@ -1,10 +1,13 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   webpack: (config) => {
-    config.resolve.alias['@'] = path.join(__dirname, 'src');
+    config.resolve.alias['@'] = path.join(dirname, 'src');
     return config;
   },
 };
