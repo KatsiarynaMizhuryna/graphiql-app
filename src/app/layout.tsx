@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Footer } from '@/components/footer/Footer';
-import './globals.css';
 import { Header } from '@/components/header/Header';
-
-const inter = Inter({ subsets: ['latin'] });
+import './globals.css';
+import { nunito } from '@/ui/fonts';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`flex flex-col min-h-screen ${nunito.className}`}>
         <Header />
         {children}
         <Footer />
