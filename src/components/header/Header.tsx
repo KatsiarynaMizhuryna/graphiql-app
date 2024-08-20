@@ -5,7 +5,7 @@ import { SignUp } from '@/components/header/signUp/SignUp';
 
 export const Header = () => {
   return (
-    <header className="flex w-full h-28 items-center justify-between px-5 bg-gray-300">
+    <header className="flex w-full h-28 items-center justify-between bg-gray-300 px-10">
       <Logo />
       <Switcher />
       <SignUp />
