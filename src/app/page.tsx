@@ -11,7 +11,7 @@ const Home = () => {
       </h1>
       <div className="flex items-center gap-4">
         <LinkButton href="/login">Sign In</LinkButton>
-        <LinkButton href="/logOut">Sign Up</LinkButton>
+        <LinkButton href="/registration">Sign Up</LinkButton>
       </div>
     </main>
   );
