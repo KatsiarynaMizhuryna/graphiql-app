@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       width: {
-        'toggle': '6.41rem',
+        toggle: '6.41rem'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

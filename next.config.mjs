@@ -9,7 +9,7 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias['@'] = path.join(dirname, 'src');
     return config;
-  },
+  }
 };
 
 export default nextConfig;
