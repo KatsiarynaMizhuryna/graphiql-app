@@ -7,7 +7,7 @@ const dirname = path.dirname(filename);
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config) => {
-    config.resolve.alias['@'] = path.join(dirname, 'src');
+    config.resolve.alias['@'] = path.join(__dirname, 'src');
     return config;
   }
 };
