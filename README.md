@@ -1,52 +1,36 @@
-# REST-GraphiQL-Client
-
-## Content
-
-- [Project Goal](#project-goal🌟)
-- [Technologies](#technologies🛠️)
-- [Project structure](#project-structure🏗️)
-- [Getting Started](#getting-started)
-
-## Project goal🌟
-
-Development of an app that combines the core functionalities of Postman and GraphiQL. The goal of this project is to enhance proficiency in tools like REST APIs and GraphiQL, improve teamwork and collaboration skills, and gain hands-on experience in building and managing web applications.
-
-## Technologies🛠️
-- TypeScript
-- Next.js
-- Tailwind CSS
-- Eslint
-- Prettier
-- Jest
-- Husky
-
-## Project structure🏗️
-
-File and folder names in our project are composed according to specific conventions: folder names use camelCase, while components are named in PascalCase.
-
-Branch names in Git must strictly adhere to the conditions set in the technical specification. Labels have been created for each individual functionality, allowing for convenient task management: General, Bug, GraphiQL, History, RESTful Client. Branch example: general-07-addHeader
-
-Git Project is used to track the team's progress.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-- **Installation** To install, you need to clone the repository: ```git clone https://github.com/KatsiarynaMizhuryna/graphiql-app.git```,
+First, run the development server:
 
-   ```npm install```
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Development** To start the development server, run:  ```npm start```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- **Testing 🧮** The project is covered by unit tests using Jest. To run them, execute: ```npm test```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- **ESLint📏** lint: Runs ESLint to check the code in files with the .ts extension: ```npm run lint```
-lint:fix: Runs ESLint to check the code in files with the .ts extension and automatically fixes any detected issues: ```npm run lint:fix```
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-- **Prettier✨** format: Runs Prettier to format the code in project files.```npm run prettier-fix```
+## Learn More
 
-- **Husky🐕** prepare: Configures Husky to use configurations from the .husky folder inside your project: ```npm run prepare```
+To learn more about Next.js, take a look at the following resources:
 
-## Contacts 📄
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- Katsiaryna Mizhuryna (e-mail: katsiaryna.mizhuryna@gmail.com)
-- Anzhelika Turlak (e-mail: 293852647@mail.ru)
-- Daria Shilnikova (e-mail: girl.is.anime20@gmail.com)
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
