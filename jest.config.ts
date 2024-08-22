@@ -4,9 +4,14 @@ const config: Config = {
   preset: 'ts-jest',
     testEnvironment: 'jest-environment-jsdom',
     transform: {
-        "^.+\\.tsx?$": "ts-jest",
-        "^.+\\.(js|jsx)$": "babel-jest"
-    // process `*.tsx` files with `ts-jest`
+      '^.+\\.tsx?$': [
+        'ts-jest',
+        {
+          tsconfig: 'tsconfig.test.json',
+          isolatedModules: true,
+        },
+      ],
+      // '^.+\\.(js|jsx)$': 'babel-jest',
     },
     moduleNameMapper: {
       '^@/(.*)$': '<rootDir>/src/$1',

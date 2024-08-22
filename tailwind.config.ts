@@ -9,6 +9,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        slideDown: {
+          from: { transform: 'translateY(-100%)' },
+          to: { transform: 'translateY(0)' }
+        }
+      },
+      animation: {
+        slideDown: 'slideDown 0.35s ease-out'
+      },
       width: {
         toggle: '6.41rem'
       },
