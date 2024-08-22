@@ -1,1 +1,0 @@
-# REST-GraphiQL-Client
