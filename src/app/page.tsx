@@ -1,3 +1,4 @@
+import SignIn from '@/components/forms/signInForm';
 import { oswald } from '@/ui/fonts';
 import { LinkButton } from '@/ui/linkButton';
 
@@ -9,6 +10,7 @@ const Home = () => {
       >
         Welcome!
       </h1>
+      <SignIn />
       <div className="flex items-center gap-4">
         <LinkButton href="/login">Sign In</LinkButton>
         <LinkButton href="/registration">Sign Up</LinkButton>
