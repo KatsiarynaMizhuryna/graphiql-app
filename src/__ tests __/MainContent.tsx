@@ -9,7 +9,9 @@ interface LinkButtonProps {
 }
 
 jest.mock('@/components/common/LinkButton', () => ({
-  LinkButton: ({ children, href }: LinkButtonProps) => <a href={href}>{children}</a>,
+  LinkButton: ({ children, href }: LinkButtonProps) => (
+    <a href={href}>{children}</a>
+  )
 }));
 
 describe('MainContent component', () => {
@@ -25,24 +27,36 @@ describe('MainContent component', () => {
     render(<MainContent userName="John Doe" />);
 
     expect(screen.getByText('Main page')).toBeInTheDocument();
-    expect(screen.getByText('Main page').closest('a')).toHaveAttribute('href', '/');
+    expect(screen.getByText('Main page').closest('a')).toHaveAttribute(
+      'href',
+      '/'
+    );
   });
 
   it('renders REST Client, GraphiQL Client, and History links', () => {
     render(<MainContent userName="John Doe" />);
 
     expect(screen.getByText('REST Client')).toBeInTheDocument();
-    expect(screen.getByText('REST Client').closest('a')).toHaveAttribute('href', '/#');
+    expect(screen.getByText('REST Client').closest('a')).toHaveAttribute(
+      'href',
+      '/#'
+    );
 
     expect(screen.getByText('GraphiQL Client')).toBeInTheDocument();
-    expect(screen.getByText('GraphiQL Client').closest('a')).toHaveAttribute('href', '/#');
+    expect(screen.getByText('GraphiQL Client').closest('a')).toHaveAttribute(
+      'href',
+      '/#'
+    );
 
     expect(screen.getByText('History')).toBeInTheDocument();
-    expect(screen.getByText('History').closest('a')).toHaveAttribute('href', '/#');
+    expect(screen.getByText('History').closest('a')).toHaveAttribute(
+      'href',
+      '/#'
+    );
   });
 
   it('matches the snapshot', () => {
     const { asFragment } = render(<MainContent userName="John Doe" />);
     expect(asFragment()).toMatchSnapshot();
   });
-})
+});

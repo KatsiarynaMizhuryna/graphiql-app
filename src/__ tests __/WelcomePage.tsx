@@ -11,10 +11,10 @@ interface LinkButtonProps {
 }
 
 jest.mock('@/components/welcomePage/mainContent/MainContent', () => ({
-  MainContent: () => <div>MainContent</div>,
+  MainContent: () => <div>MainContent</div>
 }));
 jest.mock('@/components/welcomePage/welcomeContent/WelcomeContent', () => ({
-  WelcomeContent: () => <div>WelcomeContent</div>,
+  WelcomeContent: () => <div>WelcomeContent</div>
 }));
 
 describe('Home component', () => {
@@ -37,5 +37,7 @@ describe('Home component', () => {
 });
 
 jest.mock('@/components/common/LinkButton', () => ({
-  LinkButton: ({ children, href }: LinkButtonProps) => <a href={href}>{children}</a>,
+  LinkButton: ({ children, href }: LinkButtonProps) => (
+    <a href={href}>{children}</a>
+  )
 }));
