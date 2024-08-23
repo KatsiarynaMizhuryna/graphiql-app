@@ -2,8 +2,6 @@ import React, { ReactNode } from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import Home from '@/app/page';
-import { MainContent } from '@/components/welcomePage/mainContent/MainContent';
-import { WelcomeContent } from '@/components/welcomePage/welcomeContent/WelcomeContent';
 
 interface LinkButtonProps {
   children: ReactNode;
