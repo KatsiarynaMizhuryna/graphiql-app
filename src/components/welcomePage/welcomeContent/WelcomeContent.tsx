@@ -34,10 +34,14 @@ export const WelcomeContent = () => {
                   data-testid={`gitHub${author.name.replace(' ', '')}`}
                 />
               </Link>
-              <span className={`${ubuntu.className} text-lg sm:text-xl md:text-2xl font-bold`}>
+              <span
+                className={`${ubuntu.className} text-lg sm:text-xl md:text-2xl font-bold`}
+              >
                 {author.name}
-                <span className={`${nunito.className} text-base sm:text-lg md:text-xl font-bold`}>
-                &#32;- {author.rule}
+                <span
+                  className={`${nunito.className} text-base sm:text-lg md:text-xl font-bold`}
+                >
+                  &#32;- {author.rule}
                 </span>
               </span>
             </div>
