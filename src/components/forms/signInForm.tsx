@@ -15,16 +15,17 @@ const SignIn = () => {
               <label
                 htmlFor="email"
                 className="block text-sm font-medium leading-6 text-gray-900"
-              >Email address
+              >
+                Email address
               </label>
               <div className="mt-2">
                 <Input
-                  id="email"                  
+                  id="email"
                   type="email"
                   required
                   autoComplete="email"
                   placeholder="Enter email"
-                  />
+                />
               </div>
             </div>
             <div>
@@ -34,20 +35,20 @@ const SignIn = () => {
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
                   Password
-                </label>              
+                </label>
               </div>
               <div className="mt-2">
                 <Input
-                  id="password"                 
+                  id="password"
                   type="password"
                   required
                   autoComplete="current-password"
-                  placeholder="Enter password"                 
+                  placeholder="Enter password"
                 />
               </div>
             </div>
             <div>
-              <button                
+              <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >

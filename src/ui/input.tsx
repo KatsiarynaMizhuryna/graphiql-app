@@ -1,4 +1,4 @@
-import { InputProps } from "@/interfaces/Input";
+import { InputProps } from '@/interfaces/Input';
 
 const Input: React.FC<InputProps> = ({ type, placeholder, ...props }) => {
   return (
