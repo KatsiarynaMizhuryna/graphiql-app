@@ -29,7 +29,7 @@ export const Header = () => {
           : ''
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between px-20">
         <Logo />
         <Switcher />
         <SignUp />

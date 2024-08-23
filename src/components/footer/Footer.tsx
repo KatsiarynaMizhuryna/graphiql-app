@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const Footer = () => {
   return (
-    <div className="flex items-center justify-around space-x-4 py-5 px-10">
+    <div className="container mx-auto flex items-center justify-between px-20 py-5">
       <Link
         href={'https://github.com/KatsiarynaMizhuryna/graphiql-app'}
         target="_blank"
@@ -13,6 +13,7 @@ export const Footer = () => {
           alt="logo"
           width={70}
           height={70}
+          className="rounded-[50%] mr-4 transform hover:scale-105 hover:shadow-custom-dark transition-transform duration-200"
           data-testid="github-logo"
         />
       </Link>
@@ -21,10 +22,11 @@ export const Footer = () => {
       </div>
       <Link href={'https://rs.school/'} target="_blank">
         <Image
-          src="/rs-school-js.svg"
+          src="/icon/rs-school-js.svg"
           alt="logo-course"
           width={120}
           height={70}
+          className="mr-4 transform hover:scale-105 transition-transform duration-200"
           data-testid="rs-logo"
         />
       </Link>

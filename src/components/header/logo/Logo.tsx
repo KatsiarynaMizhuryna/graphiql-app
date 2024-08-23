@@ -5,7 +5,13 @@ export const Logo = () => {
   return (
     <div>
       <Link href={'/'}>
-        <Image src={'/welcome.png'} alt="logo" width={100} height={100} />
+        <Image
+          src={'/welcome.png'}
+          alt="logo"
+          width={100}
+          height={100}
+          className="mr-4 transform hover:scale-105 transition-transform duration-200"
+        />
       </Link>
     </div>
   );
