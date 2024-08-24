@@ -1,11 +1,18 @@
 'use client';
+
 import { Logo } from '@/components/header/logo/Logo';
 import { Switcher } from '@/components/header/switcher/Switcher';
-import { SignUp } from '@/components/header/signUp/SignUp';
+import { BlockBtnIsLogged } from '@/components/header/blockBtnIsLogged/BlockBtnIsLogged';
+import { BlockBtnNotLogged} from '@/components/header/blockBtnNotLogged/BlockBtnNotLogged';
 import { useEffect, useState } from 'react';
+import { RootState } from '@/store/store';
+import { useSelector } from 'react-redux';
+
 
 export const Header = () => {
+  const { userIsLogged } = useSelector((state: RootState) => state.user);
   const [isSticky, setIsSticky] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
@@ -32,7 +39,7 @@ export const Header = () => {
       <div className="container mx-auto flex items-center justify-between px-20">
         <Logo />
         <Switcher />
-        <SignUp />
+        {userIsLogged ? <BlockBtnIsLogged /> : <BlockBtnNotLogged />}
       </div>
     </header>
   );

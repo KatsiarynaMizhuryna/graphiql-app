@@ -1,3 +1,9 @@
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'login',
+};
+
 const LoginPage = () => {
   return (
     <main className="flex-grow flex flex-col items-center justify-around p-24">

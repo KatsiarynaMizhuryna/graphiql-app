@@ -1,25 +1,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { nunito, oswald, ubuntu } from '@/ui/fonts';
-import { LinkButton } from '@/ui/linkButton';
 import { data } from './data';
 
 export const WelcomeContent = () => {
   return (
     <>
-      <div className="items-end flex gap-4 ml-auto">
-        <LinkButton href="/login">Sign In</LinkButton>
-        <LinkButton href="/registration">Sign Up</LinkButton>
-      </div>
       <div className="flex gap-20 flex-col md:flex-row">
-        <div className="flex flex-col gap-10">
-          <div className=" max-w-[700px] max-md:h-auto">
+        <div className="flex flex-col gap-10 justify-between">
+          <div className=" max-w-[700px] max-md:h-auto bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl">
             <h1 className={`${oswald.className} text-4xl font-bold mb-10`}>
               {data.aboutProject.title}
             </h1>
             <div className="text-justify">{data.aboutProject.description}</div>
           </div>
-          <div className="max-w-[700px]">
+          <div className="max-w-[700px] bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl">
             <h2 className={`${oswald.className} text-4xl font-bold mb-10`}>
               {data.aboutAuthors.title}
             </h2>
@@ -55,7 +50,7 @@ export const WelcomeContent = () => {
             ))}
           </div>
         </div>
-        <div>
+        <div className='bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl'>
           <h2 className={`${oswald.className} text-4xl font-bold mb-10`}>
             {data.aboutCourse.title}
           </h2>

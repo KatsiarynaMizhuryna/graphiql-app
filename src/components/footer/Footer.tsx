@@ -9,7 +9,7 @@ export const Footer = () => {
         target="_blank"
       >
         <Image
-          src="/github-logo.png"
+          src="/icon/github-logo.png"
           alt="logo"
           width={70}
           height={70}
