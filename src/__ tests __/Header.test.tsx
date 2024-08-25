@@ -31,6 +31,7 @@ describe('Header Component', () => {
     store = mockStore({
       user: {
         userIsLogged: false,
+        userName: ''
       },
     });
   });
@@ -55,6 +56,7 @@ describe('Header Component', () => {
     store = mockStore({
       user: {
         userIsLogged: true,
+        userName: 'Jane Doy'
       },
     });
 

@@ -5,7 +5,6 @@ import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
 import { RootState } from '@/store/store';
 import Home from '@/app/page';
 
-// Mock components if necessary
 jest.mock('@/components/mainPage/welcomeContent/WelcomeContent', () => ({
   WelcomeContent: () => (
     <div data-testid="mock-welcome-content">Welcome Content</div>

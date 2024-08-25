@@ -42,7 +42,7 @@ export const Header = () => {
       }`}
       data-testid="header"
     >
-      <div className="container mx-auto flex items-center justify-between px-20">
+      <div className="container mx-auto flex items-center justify-between px-20 py-10 max-sm:flex-col  max-sm:gap-3 max-sm:p-5">
         <Logo />
         <Switcher />
         {isUserLogged ? <BlockBtnIsLogged /> : <BlockBtnNotLogged />}
