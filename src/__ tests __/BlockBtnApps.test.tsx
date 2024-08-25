@@ -14,7 +14,7 @@ describe('BlockBtnApps', () => {
     render(<BlockBtnApps />);
     const graphQLClientButton = screen.getByText(/GraphiQL Client/i);
     expect(graphQLClientButton).toBeInTheDocument();
-    expect(graphQLClientButton).toHaveAttribute('href', '/graphQLClient');
+    expect(graphQLClientButton).toHaveAttribute('href', '/graphQlClient');
   });
 
   it('renders the History button', () => {

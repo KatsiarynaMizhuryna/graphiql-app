@@ -19,7 +19,9 @@ export const BlockBtnIsLogged = () => {
 
   return (
     <div className="flex gap-5 items-center">
-      <div className="max-sm:text-center">Welcome, <b>{userName}</b>!</div>
+      <div className="max-sm:text-center">
+        Welcome, <b>{userName}</b>!
+      </div>
       <Button onClick={handleSignOut}>Sign OUT</Button>
     </div>
   );

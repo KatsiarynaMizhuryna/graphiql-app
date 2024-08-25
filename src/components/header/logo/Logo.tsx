@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const Logo = () => {
   return (
-    <div className='max-sm:pt-3'>
+    <div className="max-sm:pt-3">
       <Link href={'/'}>
         <Image
           src={'/icon/welcome1.png'}

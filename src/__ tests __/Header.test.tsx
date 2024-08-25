@@ -32,7 +32,7 @@ describe('Header Component', () => {
       user: {
         userIsLogged: false,
         userName: ''
-      },
+      }
     });
   });
 
@@ -57,7 +57,7 @@ describe('Header Component', () => {
       user: {
         userIsLogged: true,
         userName: 'Jane Doy'
-      },
+      }
     });
 
     render(
