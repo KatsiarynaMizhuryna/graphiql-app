@@ -1,16 +1,25 @@
 'use client';
 
 import { RootState } from '@/store/store';
-import { LinkButton } from '@/ui/linkButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+import { logOut } from '@/store/userSlice';
+import { Button } from '@/ui/button';
+
 
 export const BlockBtnIsLogged = () => {
-  const { userName } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+  const { userName, userIsLogged } = useSelector((state: RootState) => state.user);
+
+  const handleSignOut = () => {
+    dispatch(logOut());
+    console.log(userIsLogged)
+    console.log('click')
+  };
 
   return (
-    <div className='flex gap-5'>
+    <div className="flex gap-5">
       <div>Welcome, {userName}!</div>
-      <LinkButton href="/registration">Sign OUT</LinkButton>
+      <Button onClick={handleSignOut}>Sign OUT</Button>
     </div>
   );
 };

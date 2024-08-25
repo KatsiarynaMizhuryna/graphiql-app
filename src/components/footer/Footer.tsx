@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export const Footer = () => {
   return (
-    <div className="container mx-auto flex items-center justify-between px-20 py-5">
+    <footer className="container mx-auto flex items-center justify-between px-20 py-5" data-testid='footer'>
       <Link
         href={'https://github.com/KatsiarynaMizhuryna/graphiql-app'}
         target="_blank"
@@ -30,6 +30,6 @@ export const Footer = () => {
           data-testid="rs-logo"
         />
       </Link>
-    </div>
+    </footer>
   );
 };

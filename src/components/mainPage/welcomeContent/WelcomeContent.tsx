@@ -50,7 +50,7 @@ export const WelcomeContent = () => {
             ))}
           </div>
         </div>
-        <div className='bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl'>
+        <div className="bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl">
           <h2 className={`${oswald.className} text-4xl font-bold mb-10`}>
             {data.aboutCourse.title}
           </h2>

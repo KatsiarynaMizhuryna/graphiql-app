@@ -6,8 +6,8 @@ interface UserState {
 }
 
 const initialState: UserState = {
-  userName: 'John Doy',
-  userIsLogged: true,
+  userName: 'gtgtg',
+  userIsLogged: true
 };
 
 const userSlice = createSlice({
@@ -21,8 +21,8 @@ const userSlice = createSlice({
     logOut(state) {
       state.userIsLogged = false;
       state.userName = '';
-    },
-  },
+    }
+  }
 });
 
 export const { logIn, logOut } = userSlice.actions;

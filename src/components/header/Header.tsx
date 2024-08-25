@@ -3,15 +3,20 @@
 import { Logo } from '@/components/header/logo/Logo';
 import { Switcher } from '@/components/header/switcher/Switcher';
 import { BlockBtnIsLogged } from '@/components/header/blockBtnIsLogged/BlockBtnIsLogged';
-import { BlockBtnNotLogged} from '@/components/header/blockBtnNotLogged/BlockBtnNotLogged';
+import { BlockBtnNotLogged } from '@/components/header/blockBtnNotLogged/BlockBtnNotLogged';
 import { useEffect, useState } from 'react';
-import { RootState } from '@/store/store';
 import { useSelector } from 'react-redux';
-
+import { RootState } from '@/store/store';
 
 export const Header = () => {
   const { userIsLogged } = useSelector((state: RootState) => state.user);
+  const [isUserLogged, setIsUserLogged] = useState(userIsLogged);
+
   const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    setIsUserLogged(userIsLogged);
+  }, [userIsLogged]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,12 +39,12 @@ export const Header = () => {
         isSticky
           ? 'fixed shadow-lg py-2 backdrop-blur-lg transform translate-y-0 animate-slideDown'
           : ''
-      }`}
+      }`} data-testid="header"
     >
       <div className="container mx-auto flex items-center justify-between px-20">
         <Logo />
         <Switcher />
-        {userIsLogged ? <BlockBtnIsLogged /> : <BlockBtnNotLogged />}
+        {isUserLogged ? <BlockBtnIsLogged /> : <BlockBtnNotLogged />}
       </div>
     </header>
   );
