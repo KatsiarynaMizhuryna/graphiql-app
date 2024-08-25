@@ -2,8 +2,8 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
-import { RootState } from '@/store/store'; // Import RootState type
-import Home from '@/app/page'; // Adjust the import path according to your project structure
+import { RootState } from '@/store/store';
+import Home from '@/app/page';
 
 // Mock components if necessary
 jest.mock('@/components/mainPage/welcomeContent/WelcomeContent', () => ({
@@ -18,7 +18,7 @@ jest.mock('@/components/mainPage/blockBtnApps/BlockBtnApps', () => ({
   )
 }));
 
-const mockStore = configureMockStore<RootState>(); // Specify RootState type for the store
+const mockStore = configureMockStore<RootState>();
 
 describe('Home Component', () => {
   let store: MockStoreEnhanced<RootState>;
@@ -27,7 +27,7 @@ describe('Home Component', () => {
     store = mockStore({
       user: {
         userName: '',
-        userIsLogged: false // Initial state: user not logged in
+        userIsLogged: false
       }
     });
   });
@@ -48,7 +48,7 @@ describe('Home Component', () => {
     store = mockStore({
       user: {
         userName: 'John Doy',
-        userIsLogged: true // User is logged in
+        userIsLogged: true
       }
     });
 
