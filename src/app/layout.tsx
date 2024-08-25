@@ -9,16 +9,17 @@ import { store } from '@/store/store';
 
 import './globals.css';
 
-
 export default function RootLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="en">
-      <body className={`flex flex-col min-h-screen ${nunito.className}`} data-testid='children-content'>
+      <body
+        className={`flex flex-col min-h-screen ${nunito.className}`}
+        data-testid="children-content"
+      >
         <Provider store={store}>
           <Header />
           {children}

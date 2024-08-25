@@ -39,7 +39,8 @@ export const Header = () => {
         isSticky
           ? 'fixed shadow-lg py-2 backdrop-blur-lg transform translate-y-0 animate-slideDown'
           : ''
-      }`} data-testid="header"
+      }`}
+      data-testid="header"
     >
       <div className="container mx-auto flex items-center justify-between px-20">
         <Logo />

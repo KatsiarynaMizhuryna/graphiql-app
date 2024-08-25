@@ -7,11 +7,15 @@ import Home from '@/app/page'; // Adjust the import path according to your proje
 
 // Mock components if necessary
 jest.mock('@/components/mainPage/welcomeContent/WelcomeContent', () => ({
-  WelcomeContent: () => <div data-testid="mock-welcome-content">Welcome Content</div>,
+  WelcomeContent: () => (
+    <div data-testid="mock-welcome-content">Welcome Content</div>
+  )
 }));
 
 jest.mock('@/components/mainPage/blockBtnApps/BlockBtnApps', () => ({
-  BlockBtnApps: () => <div data-testid="mock-block-btn-apps">Block Btn Apps</div>,
+  BlockBtnApps: () => (
+    <div data-testid="mock-block-btn-apps">Block Btn Apps</div>
+  )
 }));
 
 const mockStore = configureMockStore<RootState>(); // Specify RootState type for the store
@@ -23,8 +27,8 @@ describe('Home Component', () => {
     store = mockStore({
       user: {
         userName: '',
-        userIsLogged: false, // Initial state: user not logged in
-      },
+        userIsLogged: false // Initial state: user not logged in
+      }
     });
   });
 
@@ -44,8 +48,8 @@ describe('Home Component', () => {
     store = mockStore({
       user: {
         userName: 'John Doy',
-        userIsLogged: true, // User is logged in
-      },
+        userIsLogged: true // User is logged in
+      }
     });
 
     render(
