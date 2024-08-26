@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { Footer } from '@/components/footer/Footer';
 import { Header } from '@/components/header/Header';
+import ErrorBoundary from '@/components/errorBoundary/ErrorBoundary';
 import './globals.css';
 import { nunito } from '@/ui/fonts';
 
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`flex flex-col min-h-screen ${nunito.className}`}>
+        <ErrorBoundary>
         <Header />
-        {children}
+          {children}
         <Footer />
+        </ErrorBoundary>
       </body>
     </html>
   );
