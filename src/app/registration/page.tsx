@@ -1,4 +1,4 @@
-import SignUp from "@/components/forms/signUpForm";
+import SignUp from '@/components/forms/signUpForm';
 
 const RegistrationPage = () => {
   return (

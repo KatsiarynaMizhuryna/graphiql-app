@@ -6,7 +6,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
     const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault();    
     onSubmit(e, email, password);
   };
     return (
@@ -17,7 +17,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
           </h2>
         </div>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form  onSubmit={handleSubmit} method="POST" className="space-y-6">
+          <form  onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="email"
