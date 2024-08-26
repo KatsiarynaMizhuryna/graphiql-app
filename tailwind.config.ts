@@ -9,6 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        nunito: ['Nunito', 'sans-serif'],
+        oswald: ['Oswald', 'sans-serif'],
+        ubuntu: ['Ubuntu', 'sans-serif']
+      },
       keyframes: {
         slideDown: {
           from: { transform: 'translateY(-100%)' },
@@ -32,6 +37,9 @@ const config: Config = {
           500: '#c22229',
           600: '#991b1b'
         }
+      },
+      boxShadow: {
+        'custom-dark': '0 4px 6px rgba(0, 0, 0, 0.5)'
       }
     }
   },

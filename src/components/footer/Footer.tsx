@@ -3,16 +3,20 @@ import Image from 'next/image';
 
 export const Footer = () => {
   return (
-    <div className="flex items-center justify-around space-x-4 py-5 px-10">
+    <footer
+      className="container mx-auto flex items-center justify-between px-20 py-5 max-sm:flex-col max-sm:gap-3"
+      data-testid="footer"
+    >
       <Link
         href={'https://github.com/KatsiarynaMizhuryna/graphiql-app'}
         target="_blank"
       >
         <Image
-          src="/github-logo.png"
+          src="/icon/github-logo.png"
           alt="logo"
           width={70}
           height={70}
+          className="rounded-[50%] mr-4 transform hover:scale-105 hover:shadow-custom-dark transition-transform duration-200 max-sm:w-13 max-sm:h-13"
           data-testid="github-logo"
         />
       </Link>
@@ -21,13 +25,14 @@ export const Footer = () => {
       </div>
       <Link href={'https://rs.school/'} target="_blank">
         <Image
-          src="/rs-school-js.svg"
+          src="/icon/rs-school-js.svg"
           alt="logo-course"
           width={120}
           height={70}
+          className="mr-4 transform hover:scale-105 transition-transform duration-200 max-sm:w-20 max-sm:h-13"
           data-testid="rs-logo"
         />
       </Link>
-    </div>
+    </footer>
   );
 };
