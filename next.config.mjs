@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 const nextConfig = {
   i18n: {
     locales: ['default', 'en-US', 'ru-RU'],
-    defaultLocale: 'en-US',
+    defaultLocale: 'en-US'
   },
   webpack: (config) => {
     config.resolve.alias['@'] = path.join(__dirname, 'src');
