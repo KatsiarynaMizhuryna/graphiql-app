@@ -8,22 +8,8 @@ import { useState } from 'react';
 const SignUp: React.FC = () => {
   const [error, setError] = useState('');
   const router = useRouter();
-  const handleSignUp = async (
-    e: React.FormEvent<HTMLFormElement>,
-    email: string,
-    password: string
-  ) => {
-    e.preventDefault();
+  const handleSignUp = async (email: string, password: string) => {
     setError('');
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log(app);
-    const createUser = createUserWithEmailAndPassword(
-      getAuth(app),
-      email,
-      password
-    );
-    console.log(createUser);
     try {
       await createUserWithEmailAndPassword(getAuth(app), email, password);
       router.push('/login');
@@ -31,12 +17,16 @@ const SignUp: React.FC = () => {
       setError((e as Error).message);
     }
   };
+
   return (
-    <Form
-      title="Sign up to your account"
-      submitLabel="Sign up"
-      onSubmit={handleSignUp}
-    />
+    <>
+      <Form
+        title="Sign up to your account"
+        submitLabel="Sign up"
+        onSubmit={handleSignUp}
+      />
+      {error && <p className="text-red-600">{error}</p>}
+    </>
   );
 };
 

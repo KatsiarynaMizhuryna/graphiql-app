@@ -1,13 +1,17 @@
-import { FormProps } from '@/interfaces/form';
+import { FormInputs, FormProps } from '@/interfaces/form';
 import Input from './input';
-import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import validationSchema from '@/utils/validation';
 
 const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit(e, email, password);
+  const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>({
+    resolver: yupResolver(validationSchema),
+    mode: 'onChange',
+  });
+
+  const onSubmitHandler: SubmitHandler<FormInputs> = (data) => {
+    onSubmit(data.email, data.password);
   };
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -17,12 +21,9 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmitHandler)} className="space-y-6">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
+            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
               Email address
             </label>
             <div className="mt-2">
@@ -32,19 +33,18 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
                 required
                 autoComplete="email"
                 placeholder="Enter email"
-                onChange={(e) => setEmail(e.target.value)}
+                {...register('email')}
+                className={`block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                  errors.password ? 'ring-red-500' : ''
+                }`}
               />
+              {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>}
             </div>
           </div>
           <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-            </div>
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              Password
+            </label>
             <div className="mt-2">
               <Input
                 id="password"
@@ -52,8 +52,12 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
                 required
                 autoComplete="current-password"
                 placeholder="Enter password"
-                onChange={(e) => setPassword(e.target.value)}
+                {...register('password')}
+                className={`block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
+                  errors.password ? 'ring-red-500' : ''
+                }`}
               />
+              {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password.message}</p>}
             </div>
           </div>
           <div>
