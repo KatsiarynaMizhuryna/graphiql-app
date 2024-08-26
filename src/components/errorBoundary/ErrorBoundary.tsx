@@ -23,8 +23,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="w-full flex flex-col justify-center items-center pt-8">
-          <h1>Something went wrong... Refresh this page</h1>
+        <div data-testid="error-boundary" className="w-full flex flex-col justify-center items-center pt-8">
+          <h1 data-testid="error-message">Something went wrong... Refresh this page</h1>
           <Image
             className="w-[300px] h-[400px]"
             src={'/wrong.png'}
