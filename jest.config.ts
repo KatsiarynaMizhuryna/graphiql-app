@@ -16,7 +16,7 @@ const config: Config = {
       '^@/(.*)$': '<rootDir>/src/$1',
       '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
       '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
-      'next/font/google': '<rootDir>/src/test/__mocks__/nextFontMock.js',
+      //'next/font/google': '<rootDir>/src/test/__mocks__/nextFontMock.js',
     },
   clearMocks: true,
   collectCoverage: true,
