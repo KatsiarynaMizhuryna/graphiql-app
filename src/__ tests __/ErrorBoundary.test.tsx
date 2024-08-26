@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 import ErrorBoundary from '@/components/errorBoundary/ErrorBoundary';
 import React from 'react';
 
-
 const ErrorComponent = () => {
   throw new Error('Test error');
 };

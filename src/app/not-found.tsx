@@ -2,7 +2,7 @@ import { LinkButton } from '@/ui/linkButton';
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center space-x-4 py-5 px-10">
+    <main className="flex-grow container mx-auto flex flex-col items-center justify-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
       <h2
         data-testid="not-found-title"
         className="text-3xl font-bold text-red-600 mb-4"
@@ -15,12 +15,12 @@ export default function NotFound() {
       >
         Could not find requested resource
       </p>
-        <LinkButton href="/login"
+        <LinkButton href="/"
           data-testid="home-button"
           className="inline-block px-6 py-3 text-white bg-blue-500 hover:bg-blue-700 rounded-md"
         >
           Return Home
         </LinkButton>
-    </div>
+    </main>
   );
 }

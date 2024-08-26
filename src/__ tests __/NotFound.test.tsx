@@ -15,6 +15,8 @@ describe('NotFound Component', () => {
 
     const messageElement = screen.getByTestId('not-found-message');
     expect(messageElement).toBeInTheDocument();
-    expect(messageElement).toHaveTextContent('Could not find requested resource');
+    expect(messageElement).toHaveTextContent(
+      'Could not find requested resource'
+    );
   });
 });

@@ -6,11 +6,10 @@ import { logOut } from '@/store/userSlice';
 import { Button } from '@/ui/button';
 import { useRouter } from 'next/navigation';
 
+
 export const BlockBtnIsLogged = () => {
   const dispatch = useDispatch();
-  const { userName } = useSelector(
-    (state: RootState) => state.user
-  );
+  const { userName } = useSelector((state: RootState) => state.user);
 
   const router = useRouter();
 
