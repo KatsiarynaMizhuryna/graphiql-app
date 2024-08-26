@@ -13,7 +13,7 @@
     "jsx-a11y/accessible-emoji": "error",
     "react/jsx-no-literals": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-unused-vars": "error"
-    //"import/no-unused-modules": [1, { "unusedExports": true }]
+    "no-unused-vars": "error",
+    "import/no-unused-modules": [1, { "unusedExports": true }]
   }
 }
