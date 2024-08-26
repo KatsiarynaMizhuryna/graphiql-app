@@ -5,9 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import validationSchema from '@/utils/validation';
 
 const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormInputs>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<FormInputs>({
     resolver: yupResolver(validationSchema),
-    mode: 'onChange',
+    mode: 'onChange'
   });
 
   const onSubmitHandler: SubmitHandler<FormInputs> = (data) => {
@@ -23,7 +27,10 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleSubmit(onSubmitHandler)} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               Email address
             </label>
             <div className="mt-2">
@@ -38,11 +45,18 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
                   errors.password ? 'ring-red-500' : ''
                 }`}
               />
-              {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="mt-2 text-sm text-red-600">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               Password
             </label>
             <div className="mt-2">
@@ -57,7 +71,11 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
                   errors.password ? 'ring-red-500' : ''
                 }`}
               />
-              {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="mt-2 text-sm text-red-600">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
           </div>
           <div>

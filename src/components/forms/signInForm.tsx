@@ -11,12 +11,16 @@ const SignIn: React.FC = () => {
   const handleSignIn = async (email: string, password: string) => {
     setError('');
     try {
-      const credential = await signInWithEmailAndPassword(getAuth(app), email, password);
+      const credential = await signInWithEmailAndPassword(
+        getAuth(app),
+        email,
+        password
+      );
       const idToken = await credential.user.getIdToken();
       await fetch('/login', {
         headers: {
-          Authorization: `Bearer ${idToken}`,
-        },
+          Authorization: `Bearer ${idToken}`
+        }
       });
       router.push('/');
     } catch (e) {

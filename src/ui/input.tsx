@@ -3,7 +3,6 @@ import React, { forwardRef } from 'react';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ type, placeholder, className, error, ...props }, ref) => {
-    
     return (
       <input
         ref={ref}
