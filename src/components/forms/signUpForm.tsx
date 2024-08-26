@@ -4,11 +4,13 @@ import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { app } from '@/../firebase';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { FormInputs } from '@/interfaces/form';
 
 const SignUp: React.FC = () => {
   const [error, setError] = useState('');
   const router = useRouter();
-  const handleSignUp = async (email: string, password: string) => {
+  const handleSignUp = async (inputs: FormInputs) => {
+    const {email, password} = inputs
     setError('');
     try {
       await createUserWithEmailAndPassword(getAuth(app), email, password);

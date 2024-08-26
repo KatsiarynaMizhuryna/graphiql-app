@@ -15,7 +15,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
   });
 
   const onSubmitHandler: SubmitHandler<FormInputs> = (data) => {
-    onSubmit(data.email, data.password);
+    onSubmit(data);
   };
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
