@@ -15,7 +15,7 @@ jest.mock('next/font/google', () => ({
   Ubuntu: jest.fn(() => ({
     className: 'mocked-ubuntu-font'
   }))
-}))
+}));
 
 jest.mock('@/components/mainPage/welcomeContent/WelcomeContent', () => ({
   WelcomeContent: () => (
