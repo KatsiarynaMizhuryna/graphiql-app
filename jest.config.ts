@@ -14,7 +14,7 @@ const config: Config = {
     },
     moduleNameMapper: {
       '^@/(.*)$': '<rootDir>/src/$1',
-      '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__ mocks __/fileMock.js',
+      '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
       '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
       'next/font/google': '<rootDir>/src/test/__mocks__/nextFontMock.js',
     },
