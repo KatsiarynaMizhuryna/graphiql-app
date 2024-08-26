@@ -4,17 +4,19 @@ import { RootState } from '@/store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOut } from '@/store/userSlice';
 import { Button } from '@/ui/button';
+import { useRouter } from 'next/navigation';
 
 export const BlockBtnIsLogged = () => {
   const dispatch = useDispatch();
-  const { userName, userIsLogged } = useSelector(
+  const { userName } = useSelector(
     (state: RootState) => state.user
   );
 
+  const router = useRouter();
+
   const handleSignOut = () => {
     dispatch(logOut());
-    console.log(userIsLogged);
-    console.log('click');
+    router.push(`/`);
   };
 
   return (
