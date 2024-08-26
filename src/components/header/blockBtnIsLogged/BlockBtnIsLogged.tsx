@@ -3,15 +3,15 @@ import { Button } from '@/ui/button';
 import { useRouter } from 'next/navigation';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { app } from '@/../firebase';
-import { getAuth, signOut  } from 'firebase/auth';
+import { getAuth, signOut } from 'firebase/auth';
 
-export const BlockBtnIsLogged = () => {  
+export const BlockBtnIsLogged = () => {
   const [user] = useAuthState(getAuth(app));
   const router = useRouter();
 
-  const handleSignOut = async () => {   
-    await signOut(getAuth(app));    
-    router.push("/");
+  const handleSignOut = async () => {
+    await signOut(getAuth(app));
+    router.push('/');
   };
 
   return (

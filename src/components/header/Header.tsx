@@ -8,7 +8,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { app } from '@/../firebase';
 import { getAuth } from 'firebase/auth';
 
-export const Header = () => { 
+export const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [user] = useAuthState(getAuth(app));
 
