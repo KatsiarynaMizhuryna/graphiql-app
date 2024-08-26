@@ -17,19 +17,6 @@ jest.mock('@/components/mainPage/blockBtnApps/BlockBtnApps', () => ({
   )
 }));
 
-jest.mock('next/font/google', () => ({
-  Nunito: jest.fn(() => ({
-    className: 'mocked-nunito-font'
-  })),
-  Oswald: jest.fn(() => ({
-    className: 'mocked-oswald-font'
-  })),
-  Ubuntu: jest.fn(() => ({
-    className: 'mocked-ubuntu-font'
-  }))
-}))
-
-
 const mockStore = configureMockStore<RootState>();
 
 describe('Home Component', () => {
