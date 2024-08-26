@@ -3,7 +3,7 @@ export interface InputProps {
   type: string;
   required: boolean;
   autoComplete: string;
-  placeholder: string;  
+  placeholder: string;
   className: string;
   error?: boolean;
 }
