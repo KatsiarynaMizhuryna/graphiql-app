@@ -1,7 +1,7 @@
 export interface FormProps {
   title: string;
   submitLabel: string;
-  onSubmit: (email: string, password: string) => void;
+  onSubmit: () => void;
 }
 
 export interface FormInputs {

@@ -2,7 +2,7 @@ import { InputProps } from '@/interfaces/Input';
 import React, { forwardRef } from 'react';
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ type, placeholder, className, error, ...props }, ref) => {
+  ({ type, placeholder, className, ...props }, ref) => {
     return (
       <input
         ref={ref}
