@@ -9,9 +9,9 @@ import { FormInputs } from '@/interfaces/form';
 const SignIn: React.FC = () => {
   const [error, setError] = useState('');
   const router = useRouter();
-  
+
   const handleSignIn = async (inputs: FormInputs) => {
-    const {email, password} = inputs
+    const { email, password } = inputs;
     setError('');
     try {
       const credential = await signInWithEmailAndPassword(

@@ -10,7 +10,7 @@ const SignUp: React.FC = () => {
   const [error, setError] = useState('');
   const router = useRouter();
   const handleSignUp = async (inputs: FormInputs) => {
-    const {email, password} = inputs
+    const { email, password } = inputs;
     setError('');
     try {
       await createUserWithEmailAndPassword(getAuth(app), email, password);
