@@ -1,28 +1,23 @@
 'use client';
-
-import { RootState } from '@/store/store';
-import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from '@/store/userSlice';
 import { Button } from '@/ui/button';
 import { useRouter } from 'next/navigation';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { app } from '@/../firebase';
+import { getAuth, signOut } from 'firebase/auth';
 
 export const BlockBtnIsLogged = () => {
-  const dispatch = useDispatch();
-  const { userName } = useSelector(
-    (state: RootState) => state.user
-  );
-
+  const [user] = useAuthState(getAuth(app));
   const router = useRouter();
 
-  const handleSignOut = () => {
-    dispatch(logOut());
-    router.push(`/`);
+  const handleSignOut = async () => {
+    await signOut(getAuth(app));
+    router.push('/');
   };
 
   return (
     <div className="flex gap-5 items-center">
       <div className="max-sm:text-center">
-        Welcome, <b>{userName}</b>!
+        Welcome, <b>{user?.email}</b>!
       </div>
       <Button onClick={handleSignOut}>Sign OUT</Button>
     </div>
