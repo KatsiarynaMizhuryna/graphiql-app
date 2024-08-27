@@ -13,7 +13,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
     resolver: yupResolver(validationSchema),
     mode: 'onChange'
   });
-  
+
   const onSubmitHandler: SubmitHandler<FormInputs> = (data) => {
     onSubmit(data);
   };
