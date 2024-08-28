@@ -1,10 +1,12 @@
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export const Logo = () => {
+  const locale = useLocale();
   return (
     <div className="max-sm:pt-3">
-      <Link href={'/'}>
+      <Link href={`/${locale}/`}>
         <Image
           src={'/icon/welcome1.png'}
           alt="logo"

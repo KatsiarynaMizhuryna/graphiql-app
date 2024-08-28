@@ -1,7 +1,11 @@
+import { useTranslations } from 'next-intl';
+
 const History = () => {
+  const t = useTranslations('HistoryPage');
+
   return (
     <main className="flex-grow flex flex-col items-center justify-around p-24">
-      <h1 className="text-4xl">History PAGE</h1>
+      <h1 className="text-4xl">{t('title')}</h1>
     </main>
   );
 };

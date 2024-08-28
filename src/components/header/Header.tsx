@@ -5,11 +5,12 @@ import { Switcher } from '@/components/header/switcher/Switcher';
 import { BlockBtnIsLogged } from '@/components/header/blockBtnIsLogged/BlockBtnIsLogged';
 import { BlockBtnNotLogged } from '@/components/header/blockBtnNotLogged/BlockBtnNotLogged';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '@/store/store';
 
 export const Header = () => {
-  const { userIsLogged } = useSelector((state: RootState) => state.user);
+  //const { userIsLogged } = useSelector((state: RootState) => state.user);
+  const userIsLogged = false;
   const [isUserLogged, setIsUserLogged] = useState(userIsLogged);
 
   const [isSticky, setIsSticky] = useState(false);

@@ -29,7 +29,9 @@
     ".next/types/**/.ts",
     "src",
     "src/**/*",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/middleware.ts",
+    "src/i18n.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
 import { RootState } from '@/store/store';
-import Home from '@/app/page';
+import Home from '@/app/[locale]/page';
 
 jest.mock('@/components/mainPage/welcomeContent/WelcomeContent', () => ({
   WelcomeContent: () => (

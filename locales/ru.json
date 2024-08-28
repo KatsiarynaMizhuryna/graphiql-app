@@ -1,0 +1,98 @@
+{
+  "HomePage": {
+    "aboutProject": {
+      "title": "О ПРОЕКТЕ",
+      "description": "Этот проект направлен на создание унифицированного клиента для работы как с REST, так и с GraphQL запросами, объединяя функциональность Postman и GraphiQL в одном приложении. Он предлагает интуитивно понятный интерфейс для выбора HTTP-методов, управления заголовками и тестирования GraphQL-запросов с обратной связью в реальном времени. Разработан для удобства использования, улучшает взаимодействие с API и поддерживает сохранение запросов для повышения эффективности рабочего процесса."
+    },
+    "aboutAuthors": {
+      "title": "ОБ АВТОРАХ",
+      "authors": [
+        {
+          "id": 1,
+          "name": "Катерина Мижурина",
+          "linkGit": "https://github.com/KatsiarynaMizhuryna",
+          "rule": "Front-End Разработчик"
+        },
+        {
+          "id": 2,
+          "name": "Анжелика Турлак",
+          "linkGit": "https://github.com/Anzhelika007",
+          "rule": "Front-End Разработчик"
+        },
+        {
+          "id": 3,
+          "name": "Дарья Шильникова",
+          "linkGit": "https://github.com/Dasha2101",
+          "rule": "Front-End Разработчик"
+        }
+      ]
+    },
+    "aboutCourse": {
+      "title": "О КУРСЕ",
+      "content": [
+        {
+          "title": "ДЛЯ ВСЕХ",
+          "imgSrc": "/icon/free-learning.png",
+          "alt": "Документация курса",
+          "description": "Учиться в RS School может каждый, независимо от возраста, профессиональной занятости или места проживания"
+        },
+        {
+          "title": "МАТЕРИАЛЫ",
+          "imgSrc": "/icon/documentation.png",
+          "alt": "Документация курса",
+          "description": "Все материалы доступны в открытом доступе на YouTube-канале и GitHub"
+        },
+        {
+          "title": "БЕСПЛАТНОЕ ОБРАЗОВАНИЕ",
+          "imgSrc": "/icon/education.png",
+          "alt": "Образовательный курс",
+          "description": "Чувствуйте желание делиться своим опытом и знаниями"
+        },
+        {
+          "title": "СЕРТИФИКАТ",
+          "imgSrc": "/icon/certificate.png",
+          "alt": "Документация курса",
+          "description": "После успешного завершения курса студенты получат электронный сертификат."
+        }
+      ]
+    }
+  },
+  "LoginPage": {
+    "title": "Вход"
+  },
+  "RegistrationPage": {
+    "title": "Регистрация"
+  },
+  "GraphQlPage": {
+    "title": "Страница GraphQl"
+  },
+  "GraphClientPage": {
+    "title": "Страница клиента GraphQL"
+  },
+  "HistoryPage": {
+    "title": "История"
+  },
+  "NotFoundPage": {
+    "title": "Не найдено",
+    "description": "Не удалось найти запрашиваемый ресурс",
+    "home-button": "Вернуться на главную"
+  },
+  "ErrorBoundaryPage": {
+    "title": "Страница ошибки",
+    "description": "Не удалось найти запрашиваемый ресурс"
+  },
+  "buttons": {
+    "redirect": {
+      "restClient": "REST Клиент",
+      "graphQlClient": "GraphiQL Клиент",
+      "history": "История",
+      "home": " Главная",
+      "login": "Войти",
+      "registration": "Регистрация"
+    },
+    "action": {
+      "submit": "Отправить",
+      "logOut": "Выход"
+    }
+  }
+}
