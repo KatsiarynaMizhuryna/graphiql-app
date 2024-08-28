@@ -5,6 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { app } from '@/../firebase';
 import { getAuth, signOut } from 'firebase/auth';
 
+
 export const BlockBtnIsLogged = () => {
   const [user] = useAuthState(getAuth(app));
   const router = useRouter();

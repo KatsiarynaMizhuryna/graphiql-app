@@ -6,6 +6,7 @@ import { nunito } from '@/ui/fonts';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from '@/store/store';
+import ErrorBoundary from '@/components/errorBoundary/ErrorBoundary';
 
 import './globals.css';
 
@@ -21,9 +22,11 @@ export default function RootLayout({
         data-testid="children-content"
       >
         <Provider store={store}>
-          <Header />
-          {children}
-          <Footer />
+        <ErrorBoundary>
+            <Header />
+              {children}
+            <Footer />
+        </ErrorBoundary>
         </Provider>
       </body>
     </html>
