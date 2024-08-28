@@ -5,6 +5,18 @@ import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
 import { RootState } from '@/store/store';
 import Home from '@/app/page';
 
+jest.mock('next/font/google', () => ({
+  Nunito: jest.fn(() => ({
+    className: 'mocked-nunito-font'
+  })),
+  Oswald: jest.fn(() => ({
+    className: 'mocked-oswald-font'
+  })),
+  Ubuntu: jest.fn(() => ({
+    className: 'mocked-ubuntu-font'
+  }))
+}));
+
 jest.mock('@/components/mainPage/welcomeContent/WelcomeContent', () => ({
   WelcomeContent: () => (
     <div data-testid="mock-welcome-content">Welcome Content</div>
