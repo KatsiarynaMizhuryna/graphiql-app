@@ -1,27 +1,28 @@
 'use client';
 
-// import { RootState } from '@/store/store';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { logOut } from '@/store/userSlice';
+import { useLocale } from 'next-intl';
 import { Button } from '@/ui/button';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/store/userContext';
+import { logOutUserToLocalStorage } from '@/store/localStorage';
 
 export const BlockBtnIsLogged = () => {
-  // const dispatch = useDispatch();
-  // const { userName } = useSelector((state: RootState) => state.user);
-  const userName = 'Jane Doy';
-
+  const { uid, userEmail, setUser } = useAuth();
+  const locale = useLocale();
   const router = useRouter();
 
   const handleSignOut = () => {
-    //dispatch(logOut());
-    router.push(`/`);
+    if (uid) {
+      logOutUserToLocalStorage(uid);
+    }
+    setUser(null, null, false);
+    router.push(`/${locale}/`);
   };
 
   return (
     <div className="flex gap-5 items-center">
       <div className="max-sm:text-center">
-        Welcome, <b>{userName}</b>!
+        Welcome, <b>{userEmail}</b>!
       </div>
       <Button onClick={handleSignOut}>Sign OUT</Button>
     </div>

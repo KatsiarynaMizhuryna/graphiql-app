@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserProvider } from '@/store/userContext';
 import './globals.css';
 
 export default async function RootLayout({
@@ -6,5 +7,5 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <UserProvider>{children}</UserProvider>;
 }

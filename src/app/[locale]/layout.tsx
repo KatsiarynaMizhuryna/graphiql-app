@@ -3,7 +3,9 @@ import { getMessages } from 'next-intl/server';
 import { Footer } from '@/components/footer/Footer';
 import { Header } from '@/components/header/Header';
 import { nunito } from '@/ui/fonts';
+import { CustomToaster } from '@/ui/toaster';
 import React from 'react';
+import ErrorBoundary from '@/components/errorBoundary/ErrorBoundary';
 
 export default async function RootLayout({
   children,
@@ -20,11 +22,14 @@ export default async function RootLayout({
         className={`flex flex-col min-h-screen ${nunito.className}`}
         data-testid="children-content"
       >
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          {children}
-          <Footer />
-        </NextIntlClientProvider>
+        <ErrorBoundary>
+          <NextIntlClientProvider messages={messages}>
+            <CustomToaster />
+            <Header />
+            {children}
+            <Footer />
+          </NextIntlClientProvider>
+        </ErrorBoundary>
       </body>
     </html>
   );

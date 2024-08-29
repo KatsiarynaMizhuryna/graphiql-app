@@ -89,5 +89,29 @@
       "submit": "Submit",
       "logOut": "Sain OUT"
     }
+  },
+  "Forms": {
+    "signIn": {
+      "title": "Sign in to your account",
+      "label": "Sign in"
+    },
+    "signUp": {
+      "title": "Sign up to your account",
+      "label": "Sign up"
+    },
+    "placeholderEmail": "Enter email",
+    "placeholderPassword": "Enter password",
+    "labelEmail": "Email address",
+    "labelPassword": "Password",
+    "buttonSubmit": "",
+    "requirements": {
+      "email": "Invalid email address",
+      "emailRequired": "Email is required",
+      "passwordLength": "Password must be at least 8 characters",
+      "passwordLetter": "Password must contain at least one letter",
+      "passwordDigit": "Password must contain at least one digit",
+      "passwordCharacter": "Password must contain at least one special character",
+      "passwordRequired": "Password is required"
+    }
   }
 }

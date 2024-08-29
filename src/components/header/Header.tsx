@@ -5,19 +5,17 @@ import { Switcher } from '@/components/header/switcher/Switcher';
 import { BlockBtnIsLogged } from '@/components/header/blockBtnIsLogged/BlockBtnIsLogged';
 import { BlockBtnNotLogged } from '@/components/header/blockBtnNotLogged/BlockBtnNotLogged';
 import { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { RootState } from '@/store/store';
+import { useAuth } from '@/store/userContext';
 
 export const Header = () => {
-  //const { userIsLogged } = useSelector((state: RootState) => state.user);
-  const userIsLogged = false;
-  const [isUserLogged, setIsUserLogged] = useState(userIsLogged);
+  const { isLogged } = useAuth();
 
+  const [isUserLogged, setIsUserLogged] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    setIsUserLogged(userIsLogged);
-  }, [userIsLogged]);
+    setIsUserLogged(isLogged);
+  }, [isLogged]);
 
   useEffect(() => {
     const handleScroll = () => {

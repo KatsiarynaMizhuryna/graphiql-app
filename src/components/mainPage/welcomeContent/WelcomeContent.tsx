@@ -1,9 +1,9 @@
-'use client';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { nunito, oswald, ubuntu } from '@/ui/fonts';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 interface Author {
   id: string;
@@ -32,14 +32,11 @@ export const WelcomeContent = () => {
         setAuthors(data.HomePage.aboutAuthors.authors);
         setInfoCourse(data.HomePage.aboutCourse.content);
       } catch (error) {
-        console.error('Error loader data on dynamic import');
+        toast.error('Error loader data on dynamic import for data!');
       }
     };
     loadLocaleDate();
   }, [locale]);
-
-  console.log(authors);
-  console.log(infoCourse);
 
   return (
     <div className="flex gap-20 flex-col md:flex-row">

@@ -5,10 +5,11 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
 export const Switcher = () => {
+  // eslint-disable-next-line no-unused-vars
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
-  const pathname = usePathname(); // Получаем текущий путь
+  const pathname = usePathname();
 
   const [isChecked, setIsChecked] = useState(localActive === 'ru');
 
@@ -16,7 +17,6 @@ export const Switcher = () => {
     const locale = isChecked ? 'en' : 'ru';
     const pathPage = pathname.split('/').slice(2).join('/');
     setIsChecked(!isChecked);
-    console.log(pathPage, isPending);
     startTransition(() => {
       const newUrl = `/${locale}/${pathPage}`;
       router.replace(newUrl);
