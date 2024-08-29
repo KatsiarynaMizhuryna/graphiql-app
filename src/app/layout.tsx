@@ -22,11 +22,11 @@ export default function RootLayout({
         data-testid="children-content"
       >
         <Provider store={store}>
-        <ErrorBoundary>
+          <ErrorBoundary>
             <Header />
-              {children}
+            {children}
             <Footer />
-        </ErrorBoundary>
+          </ErrorBoundary>
         </Provider>
       </body>
     </html>

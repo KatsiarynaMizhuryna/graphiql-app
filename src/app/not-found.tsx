@@ -9,18 +9,16 @@ export default function NotFound() {
       >
         Not Found
       </h2>
-      <p
-        data-testid="not-found-message"
-        className="text-lg text-gray-700 mb-6"
-      >
+      <p data-testid="not-found-message" className="text-lg text-gray-700 mb-6">
         Could not find requested resource
       </p>
-        <LinkButton href="/"
-          data-testid="home-button"
-          className="inline-block px-6 py-3 text-white bg-blue-500 hover:bg-blue-700 rounded-md"
-        >
-          Return Home
-        </LinkButton>
+      <LinkButton
+        href="/"
+        data-testid="home-button"
+        className="inline-block px-6 py-3 text-white bg-blue-500 hover:bg-blue-700 rounded-md"
+      >
+        Return Home
+      </LinkButton>
     </main>
   );
 }

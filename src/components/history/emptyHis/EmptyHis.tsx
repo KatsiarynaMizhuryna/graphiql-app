@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 import { LinkButton } from '@/ui/linkButton';
 const HistoryLogic = () => {
@@ -22,6 +22,6 @@ const HistoryLogic = () => {
       </div>
     );
   }
-}
+};
 
 export default HistoryLogic;

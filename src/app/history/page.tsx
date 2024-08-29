@@ -1,4 +1,4 @@
-import HistoryLogic from "@/components/history/History";
+import HistoryLogic from '@/components/history/emptyHis/EmptyHis';
 const History = () => {
   return (
     <main className="flex-grow flex flex-col items-center justify-around p-24">
