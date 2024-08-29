@@ -12,10 +12,13 @@ interface UserContextProps {
   uid: string | null;
   isLogged: boolean;
   userEmail: string | null;
-  // eslint-disable-next-line no-unused-vars
+
   setUser: (
+    // eslint-disable-next-line no-unused-vars
     uid: string | null,
+    // eslint-disable-next-line no-unused-vars
     userEmail: string | null,
+    // eslint-disable-next-line no-unused-vars
     isLogged: boolean
   ) => void;
 }
