@@ -6,6 +6,11 @@ import { nunito } from '@/ui/fonts';
 import { CustomToaster } from '@/ui/toaster';
 import React from 'react';
 import ErrorBoundary from '@/components/errorBoundary/ErrorBoundary';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home'
+};
 
 export default async function RootLayout({
   children,
