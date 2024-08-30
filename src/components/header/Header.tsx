@@ -1,5 +1,4 @@
 'use client';
-
 import { Logo } from '@/components/header/logo/Logo';
 import { Switcher } from '@/components/header/switcher/Switcher';
 import { BlockBtnIsLogged } from '@/components/header/blockBtnIsLogged/BlockBtnIsLogged';

@@ -1,5 +1,3 @@
-'use client';
-
 import SignUp from '@/components/forms/signUpForm';
 
 const RegistrationPage = () => {

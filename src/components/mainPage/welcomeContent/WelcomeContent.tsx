@@ -31,8 +31,9 @@ export const WelcomeContent = () => {
         const data = await import(`../../../../locales/${locale}.json`);
         setAuthors(data.HomePage.aboutAuthors.authors);
         setInfoCourse(data.HomePage.aboutCourse.content);
-      } catch (error) {
-        toast.error('Error loader data on dynamic import for data!');
+      } catch (e) {
+        const errorMessage = (e as Error).message;
+        toast.error(errorMessage);
       }
     };
     loadLocaleDate();

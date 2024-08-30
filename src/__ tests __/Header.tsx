@@ -3,7 +3,6 @@ import '@testing-library/jest-dom';
 import { Header } from '@/components/header/Header';
 import { fireEvent } from '@testing-library/dom';
 import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
-import { RootState } from '@/store/store';
 import { Provider } from 'react-redux';
 
 jest.mock('@/components/header/logo/Logo', () => ({
