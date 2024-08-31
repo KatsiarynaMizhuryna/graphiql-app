@@ -1,30 +1,44 @@
-'use client'
-import { Component, ReactNode } from 'react';
-import Image from 'next/image';
+'use client';
 
-interface ErrorBoundaryState {
+import React, { Component, ErrorInfo } from 'react';
+import Image from 'next/image';
+import { nunito } from '@/ui/fonts';
+
+interface Props {
+  children: React.ReactNode;
+}
+
+interface State {
   hasError: boolean;
 }
 
-interface ErrorBoundaryProps {
-  children: ReactNode;
-}
-
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error('ErrorBoundary caught an error: ', error, errorInfo);
+    this.setState({ hasError: true });
   }
 
-  render(): ReactNode {
+  render() {
     if (this.state.hasError) {
       return (
-        <div data-testid="error-boundary" className="flex-grow container mx-auto flex flex-col items-center justify-around px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
-          <h1 data-testid="error-message">Something went wrong... Refresh this page</h1>
+        <div
+          data-testid="error-boundary"
+          className="flex-grow container mx-auto flex flex-col items-center justify-around px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20"
+        >
+          <h1
+            data-testid="error-message"
+            className={`text-6xl font-bold text-center ${nunito.className}`}
+          >
+            Something went wrong... &#10098;
+          </h1>
+          <h3 className={`text-6xl font-bold text-center ${nunito.className}`}>
+            Come back later!
+          </h3>
           <Image
             className="w-[300px] h-[400px]"
             src={'/wrong.png'}

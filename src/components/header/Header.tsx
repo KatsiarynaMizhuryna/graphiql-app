@@ -4,13 +4,15 @@ import { Switcher } from '@/components/header/switcher/Switcher';
 import { BlockBtnIsLogged } from '@/components/header/blockBtnIsLogged/BlockBtnIsLogged';
 import { BlockBtnNotLogged } from '@/components/header/blockBtnNotLogged/BlockBtnNotLogged';
 import { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { app } from '@/../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 
 export const Header = () => {
+  const auth = getAuth(app);
+  const [user] = useAuthState(auth);
+
   const [isSticky, setIsSticky] = useState(false);
-  const [user] = useAuthState(getAuth(app));
 
   useEffect(() => {
     const handleScroll = () => {
