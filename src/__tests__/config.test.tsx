@@ -3,10 +3,8 @@ config({ path: '.env.local' });
 
 describe('Config', () => {
   beforeEach(() => {
-    // Сбрасываем кеш модулей перед каждым тестом
     jest.resetModules();
 
-    // Мокируем переменные окружения
     process.env.NEXT_PUBLIC_FIREBASE_API_KEY = 'firebase_api_key';
   });
 
@@ -29,7 +27,7 @@ describe('Config', () => {
     const { clientConfig } = require('../../config');
 
     expect(clientConfig.projectId).toBe('graphql-client-app');
-    expect(clientConfig.apiKey).toBe('firebase_api_key'); // Теперь должно работать с замокированным значением
+    expect(clientConfig.apiKey).toBe('firebase_api_key');
     expect(clientConfig.authDomain).toBe('graphql-client-app.firebaseapp.com');
     expect(clientConfig.databaseURL).toBe('graphql-client-app.firebaseio.com');
     expect(clientConfig.messagingSenderId).toBe('62643942006');
