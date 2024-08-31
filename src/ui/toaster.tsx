@@ -22,6 +22,15 @@ export const CustomToaster = () => {
             border: '2px solid red',
             color: '#696969'
           }
+        },
+        loading: {
+          duration: 1000,
+          position: 'top-right',
+          style: {
+            background: '#90EE90',
+            color: '#696969',
+            border: '2px solid green'
+          }
         }
       }}
       position="top-right"

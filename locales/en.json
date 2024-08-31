@@ -74,7 +74,8 @@
   },
   "NotFoundPage": {
     "title": "Not Found",
-    "description": "Could not find requested resource"
+    "description": "Could not find requested resource",
+    "homeBtn": "Go Home"
   },
   "buttons": {
     "redirect": {

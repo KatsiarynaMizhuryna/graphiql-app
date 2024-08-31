@@ -5,8 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState, useTransition } from 'react';
 
 export const Switcher = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
   const pathname = usePathname();

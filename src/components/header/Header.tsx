@@ -4,17 +4,15 @@ import { Switcher } from '@/components/header/switcher/Switcher';
 import { BlockBtnIsLogged } from '@/components/header/blockBtnIsLogged/BlockBtnIsLogged';
 import { BlockBtnNotLogged } from '@/components/header/blockBtnNotLogged/BlockBtnNotLogged';
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/store/userContext';
+import { app } from '@/../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getAuth } from 'firebase/auth';
 
 export const Header = () => {
-  const { isLogged } = useAuth();
+  const auth = getAuth(app);
+  const [user] = useAuthState(auth);
 
-  const [isUserLogged, setIsUserLogged] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    setIsUserLogged(isLogged);
-  }, [isLogged]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +41,7 @@ export const Header = () => {
       <div className="container mx-auto flex items-center justify-between px-20 py-10 max-sm:flex-col  max-sm:gap-3 max-sm:p-5">
         <Logo />
         <Switcher />
-        {isUserLogged ? <BlockBtnIsLogged /> : <BlockBtnNotLogged />}
+        {user ? <BlockBtnIsLogged /> : <BlockBtnNotLogged />}
       </div>
     </header>
   );

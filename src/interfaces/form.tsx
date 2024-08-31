@@ -6,6 +6,5 @@ export interface FormInputs {
 export interface FormProps {
   title: string;
   submitLabel: string;
-  // eslint-disable-next-line no-unused-vars
   onSubmit: (inputs: FormInputs) => void;
 }

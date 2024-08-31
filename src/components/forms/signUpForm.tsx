@@ -8,15 +8,12 @@ import { app } from '@/../firebase';
 import { useRouter } from 'next/navigation';
 import { FormInputs } from '@/interfaces/form';
 import toast from 'react-hot-toast';
-import { useAuth } from '@/store/userContext';
 import { saveUserToLocalStorage } from '@/store/localStorage';
 
 const SignUp: React.FC = () => {
   const locale = useLocale();
   const t = useTranslations('Forms');
   const router = useRouter();
-
-  const { setUser } = useAuth();
 
   const handleSignUp = async (inputs: FormInputs) => {
     const { email, password } = inputs;
@@ -34,8 +31,6 @@ const SignUp: React.FC = () => {
       if (userEmail) {
         saveUserToLocalStorage(userId, userEmail);
       }
-
-      setUser(userId, userEmail, true);
 
       toast.success(`Hello, ${email}!`);
       router.push(`/${locale}/`);

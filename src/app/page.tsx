@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-const page = () => {
+const RootPage = () => {
   redirect('/en');
 };
 
-export default page;
+export default RootPage;

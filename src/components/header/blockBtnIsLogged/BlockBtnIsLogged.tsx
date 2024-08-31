@@ -1,30 +1,40 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/ui/button';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/store/userContext';
 import { logOutUserToLocalStorage } from '@/store/localStorage';
+import { getAuth, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 export const BlockBtnIsLogged = () => {
-  const { uid, userEmail, setUser } = useAuth();
+  const t = useTranslations('buttons.action');
   const locale = useLocale();
   const router = useRouter();
+  const auth = getAuth();
+  const [user] = useAuthState(auth);
+  const uid = user?.uid;
+  const email = user?.email;
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     if (uid) {
       logOutUserToLocalStorage(uid);
     }
-    setUser(null, null, false);
+
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error('Error signing out: ', error);
+    }
     router.push(`/${locale}/`);
   };
 
   return (
     <div className="flex gap-5 items-center">
       <div className="max-sm:text-center">
-        Welcome, <b>{userEmail}</b>!
+        Welcome, <b>{email}</b>!
       </div>
-      <Button onClick={handleSignOut}>Sign OUT</Button>
+      <Button onClick={handleSignOut}>{t('logOut')}</Button>
     </div>
   );
 };

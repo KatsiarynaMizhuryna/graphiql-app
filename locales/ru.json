@@ -75,7 +75,7 @@
   "NotFoundPage": {
     "title": "Не найдено",
     "description": "Не удалось найти запрашиваемый ресурс",
-    "home-button": "Вернуться на главную"
+    "homeBtn": "Главная Страница"
   },
   "ErrorBoundaryPage": {
     "title": "Страница ошибки",

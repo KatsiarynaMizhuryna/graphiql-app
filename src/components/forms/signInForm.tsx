@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '@/../firebase';
 import { FormInputs } from '@/interfaces/form';
-import { useAuth } from '@/store/userContext';
 import { checkedLocalStorage } from '@/store/localStorage';
 import toast from 'react-hot-toast';
 
@@ -15,8 +14,6 @@ const SignIn: React.FC = () => {
   const t = useTranslations('Forms');
   const locale = useLocale();
   const router = useRouter();
-
-  const { setUser } = useAuth();
 
   const handleSignIn = async (inputs: FormInputs) => {
     const { email, password } = inputs;
@@ -35,7 +32,6 @@ const SignIn: React.FC = () => {
 
       if (credential.user.email) {
         checkedLocalStorage(credential.user.uid, credential.user.email);
-        setUser(credential.user.uid, credential.user.email, true);
       }
 
       router.push(`/${locale}/`);

@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 
-// eslint-disable-next-line no-unused-vars
 type TFunction = (key?: string) => string;
 
 const getValidationSchema = (t: TFunction) => {

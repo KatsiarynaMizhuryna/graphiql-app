@@ -8,17 +8,19 @@ import React from 'react';
 import ErrorBoundary from '@/components/errorBoundary/ErrorBoundary';
 import { Metadata } from 'next';
 
+interface LocaleLayoutProps {
+  children: React.ReactNode;
+  params: { locale: string };
+}
+
 export const metadata: Metadata = {
   title: 'Home'
 };
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params: { locale }
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+}: Readonly<LocaleLayoutProps>) {
   const messages = await getMessages();
 
   return (
