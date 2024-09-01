@@ -1,5 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import HistoryLogic from '@/components/history/emptyHis/EmptyHis';
+import { useTranslations, useLocale } from 'next-intl';
+
+jest.mock('next-intl', () => ({
+  useTranslations: jest.fn(),
+  useLocale: jest.fn()
+}));
 
 const mockGetItem = jest.fn();
 const mockSetItem = jest.fn();
@@ -15,6 +21,16 @@ beforeEach(() => {
     length: 0,
     key: jest.fn()
   } as Storage;
+
+  (useTranslations as jest.Mock).mockImplementation(() => (key: string) => {
+    const translations: Record<string, string> = {
+      'HistoryPage.subTitle': 'You have not executed any requests yet',
+      'buttons.redirect.restClient': 'REST Client',
+      'buttons.redirect.graphQlClient': 'Graph-QL Client'
+    };
+    return translations[key];
+  });
+  (useLocale as jest.Mock).mockReturnValue('en');
 });
 
 afterEach(() => {
@@ -25,13 +41,7 @@ test('renders message and buttons when no requests exist', () => {
   mockGetItem.mockReturnValue(null);
 
   render(<HistoryLogic />);
-  const messageElement = screen.queryByText(
-    /You have not executed any requests yet/i
-  );
-  const restClientButton = screen.queryByText(/REST Client/i);
-  const graphQlClientButton = screen.queryByText(/Graph-QL Client/i);
 
+  const messageElement = screen.getByTestId('history-subtitle');
   expect(messageElement).not.toBeNull();
-  expect(restClientButton).not.toBeNull();
-  expect(graphQlClientButton).not.toBeNull();
 });

@@ -4,6 +4,7 @@ interface LinkButtonProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: React.ReactNode;
+  'data-testid'?: string;
 }
 
 export const LinkButton = ({ href, children }: LinkButtonProps) => {

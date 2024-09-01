@@ -20,13 +20,21 @@ const HistoryLogic = () => {
 
   if (!requestsExist) {
     return (
-      <div className="text-center">
-        <p className="text-xl">{t('subTitle')}</p>
+      <div className="text-center" data-testid="history-container">
+        <p className="text-xl" data-testid="history-subtitle">
+          {t('subTitle')}
+        </p>
         <div className="mt-4 space-x-4">
-          <LinkButton href={`/${locale}/restClient`}>
+          <LinkButton
+            href={`/${locale}/restClient`}
+            data-testid="rest-client-button"
+          >
             {tBtn('restClient')}
           </LinkButton>
-          <LinkButton href={`/${locale}/graphQlClient`}>
+          <LinkButton
+            href={`/${locale}/graphQlClient`}
+            data-testid="graphql-client-button"
+          >
             {tBtn('graphQlClient')}
           </LinkButton>
         </div>
