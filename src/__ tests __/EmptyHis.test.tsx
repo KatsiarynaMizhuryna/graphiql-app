@@ -13,7 +13,7 @@ beforeEach(() => {
     removeItem: mockRemoveItem,
     clear: mockClear,
     length: 0,
-    key: jest.fn(),
+    key: jest.fn()
   } as Storage;
 });
 
@@ -25,7 +25,9 @@ test('renders message and buttons when no requests exist', () => {
   mockGetItem.mockReturnValue(null);
 
   render(<HistoryLogic />);
-  const messageElement = screen.queryByText(/You have not executed any requests yet/i);
+  const messageElement = screen.queryByText(
+    /You have not executed any requests yet/i
+  );
   const restClientButton = screen.queryByText(/REST Client/i);
   const graphQlClientButton = screen.queryByText(/Graph-QL Client/i);
 
