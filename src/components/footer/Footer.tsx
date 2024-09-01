@@ -29,7 +29,7 @@ export const Footer = () => {
           alt="logo-course"
           width={120}
           height={70}
-          className="mr-4 transform hover:scale-105 transition-transform duration-200 max-sm:w-20 max-sm:h-13"
+          className="mr-4 transform hover:scale-105 transition-transform duration-200 max-sm:w-auto max-sm:h-auto object-contain"
           data-testid="rs-logo"
         />
       </Link>
