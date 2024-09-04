@@ -70,7 +70,8 @@
     "title": "Страница клиента GraphQL"
   },
   "HistoryPage": {
-    "title": "История"
+    "title": "История",
+    "subTitle": "Вы еще не выполнили ни одного запроса"
   },
   "NotFoundPage": {
     "title": "Не найдено",

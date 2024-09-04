@@ -70,7 +70,8 @@
     "title": "Graph-QL Client PAGE"
   },
   "HistoryPage": {
-    "title": "History PAGE"
+    "title": "History PAGE",
+    "subTitle": "You have not executed any requests yet"
   },
   "NotFoundPage": {
     "title": "Not Found",
