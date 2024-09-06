@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import HistoryLogic from '@/components/history/emptyHis/EmptyHis';
+import HistoryLogic from '@/components/history/History';
 import { useTranslations, useLocale } from 'next-intl';
 
 jest.mock('next-intl', () => ({

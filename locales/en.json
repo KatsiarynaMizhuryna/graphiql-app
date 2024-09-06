@@ -69,6 +69,9 @@
   "GraphClientPage": {
     "title": "Graph-QL Client PAGE"
   },
+  "RestClientPage": {
+    "title": "REST Client"
+  },
   "HistoryPage": {
     "title": "History PAGE",
     "subTitle": "You have not executed any requests yet"

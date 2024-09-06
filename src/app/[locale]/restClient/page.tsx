@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 
 const RestClientPage = () => {
-  const t = useTranslations('GraphClientPage');
+  const t = useTranslations('RestClientPage');
 
   return (
     <main className="flex-grow flex flex-col items-center justify-around p-24">

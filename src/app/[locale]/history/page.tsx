@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl';
-import HistoryLogic from '@/components/history/emptyHis/EmptyHis';
+import HistoryLogic from '@/components/history/History';
 
 const History = () => {
   const t = useTranslations('HistoryPage');

@@ -69,6 +69,9 @@
   "GraphClientPage": {
     "title": "Страница клиента GraphQL"
   },
+  "RestClientPage": {
+    "title": "Страница REST клтента"
+  },
   "HistoryPage": {
     "title": "История",
     "subTitle": "Вы еще не выполнили ни одного запроса"
