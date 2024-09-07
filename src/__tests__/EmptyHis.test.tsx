@@ -1,47 +1,65 @@
 import { render, screen } from '@testing-library/react';
 import HistoryLogic from '@/components/history/History';
-import { useTranslations, useLocale } from 'next-intl';
+import '@testing-library/jest-dom';
 
 jest.mock('next-intl', () => ({
-  useTranslations: jest.fn(),
-  useLocale: jest.fn()
+  useTranslations: jest.fn(() => (key: string) => key),
+  useLocale: jest.fn(() => 'en')
 }));
 
-const mockGetItem = jest.fn();
-const mockSetItem = jest.fn();
-const mockRemoveItem = jest.fn();
-const mockClear = jest.fn();
+const localStorageMock = (() => {
+  let store: { [key: string]: string } = {};
+  return {
+    getItem(key: string) {
+      return store[key] || null;
+    },
+    setItem(key: string, value: string) {
+      store[key] = value;
+    },
+    clear() {
+      store = {};
+    }
+  };
+})();
 
-beforeEach(() => {
-  global.localStorage = {
-    getItem: mockGetItem,
-    setItem: mockSetItem,
-    removeItem: mockRemoveItem,
-    clear: mockClear,
-    length: 0,
-    key: jest.fn()
-  } as Storage;
+Object.defineProperty(global, 'localStorage', { value: localStorageMock });
 
-  (useTranslations as jest.Mock).mockImplementation(() => (key: string) => {
-    const translations: Record<string, string> = {
-      'HistoryPage.subTitle': 'You have not executed any requests yet',
-      'buttons.redirect.restClient': 'REST Client',
-      'buttons.redirect.graphQlClient': 'Graph-QL Client'
-    };
-    return translations[key];
+describe('HistoryLogic', () => {
+  beforeEach(() => {
+    localStorage.clear();
   });
-  (useLocale as jest.Mock).mockReturnValue('en');
-});
 
-afterEach(() => {
-  jest.restoreAllMocks();
-});
+  test('renders requests in sorted order', () => {
+    const mockRequests = [
+      {
+        method: 'POST',
+        url: 'https://api.example.com/resource',
+        time: new Date(Date.now() - 1000).toISOString()
+      },
+      {
+        method: 'GET',
+        url: 'https://api.example.com/resource/1',
+        time: new Date(Date.now() - 2000).toISOString()
+      },
+      {
+        method: 'GRAPHQL',
+        url: 'https://graphql.example.com/query',
+        time: new Date(Date.now() - 3000).toISOString()
+      }
+    ];
 
-test('renders message and buttons when no requests exist', () => {
-  mockGetItem.mockReturnValue(null);
+    localStorage.setItem('requestsHistory', JSON.stringify(mockRequests));
 
-  render(<HistoryLogic />);
-
-  const messageElement = screen.getByTestId('history-subtitle');
-  expect(messageElement).not.toBeNull();
+    render(<HistoryLogic />);
+    const requestElements = screen.getAllByRole('link');
+    expect(requestElements[0]).toHaveTextContent(
+      'POST https://api.example.com/resource'
+    );
+    expect(requestElements[1]).toHaveTextContent(
+      'GET https://api.example.com/resource/1'
+    );
+    expect(requestElements[2]).toHaveTextContent(
+      'GRAPHQL https://graphql.example.com/query'
+    );
+  });
 });

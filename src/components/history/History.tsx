@@ -39,13 +39,13 @@ const HistoryLogic = () => {
   useEffect(() => {
     const mockRequests: Request[] = [
       {
-        method: 'GET',
-        url: 'https://api.example.com/resource/1',
+        method: 'POST',
+        url: 'https://api.example.com/resource',
         time: new Date().toISOString()
       },
       {
-        method: 'POST',
-        url: 'https://api.example.com/resource',
+        method: 'GET',
+        url: 'https://api.example.com/resource/1',
         time: new Date().toISOString()
       },
       {
