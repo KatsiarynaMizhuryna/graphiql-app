@@ -6,10 +6,8 @@ import { WelcomeContent } from '@/components/mainPage/welcomeContent/WelcomeCont
 import { BlockBtnApps } from '@/components/mainPage/blockBtnApps/BlockBtnApps';
 
 const Home = () => {
-  
   const [user, loading, error] = useAuthState(getAuth(app));
   if (error) return <p>Error: {error.message}</p>;
-  
 
   return (
     <main

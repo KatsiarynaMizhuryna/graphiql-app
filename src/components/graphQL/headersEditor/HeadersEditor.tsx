@@ -1,18 +1,17 @@
 import React from 'react';
+import { HeaderEditorProps } from '@/interfaces/graphQl';
 
-interface HeaderEditorProps {
-  headers: { [key: string]: string } | undefined;
-  onHeadersChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}
-
-const HeaderEditor: React.FC<HeaderEditorProps> = ({ headers, onHeadersChange }) => {
+const HeaderEditor: React.FC<HeaderEditorProps> = ({
+  headers,
+  onHeadersChange
+}) => {
   return (
     <div className="flex-grow">
       <div className="text-sm text-gray-400">Headers</div>
       <textarea
         value={JSON.stringify(headers, null, 2)}
         onChange={onHeadersChange}
-        className="w-full bg-gray-900 text-gray-200 p-2 rounded-lg focus:outline-none resize-none"
+        className="w-full bg-zinc-300 text-gray-800 p-2 rounded-lg focus:outline-none resize-none"
         rows={3}
       ></textarea>
     </div>
