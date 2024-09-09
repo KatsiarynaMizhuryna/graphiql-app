@@ -1,9 +1,14 @@
-'use client'
+'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { IconButtonWithTextProps } from '@/interfaces/graphQl';
 
-const IconButton: React.FC<IconButtonWithTextProps> = ({ iconSrc, iconAlt, buttonText, onClick }) => {
+const IconButton: React.FC<IconButtonWithTextProps> = ({
+  iconSrc,
+  iconAlt,
+  buttonText,
+  onClick
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -1,4 +1,4 @@
-import { createGraphiQLFetcher } from "@graphiql/toolkit";
+import { createGraphiQLFetcher } from '@graphiql/toolkit';
 
 export interface DocumentationViewerProps {
   endpointUrl: string;

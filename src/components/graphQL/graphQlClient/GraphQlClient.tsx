@@ -16,7 +16,7 @@ const GraphiQL = () => {
   const [query, setQuery] = useState('');
   const [variables, setVariables] = useState('');
   const [response, setResponse] = useState();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false); 
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleExecuteQuery = async () => {
     const headersObject = headers;
@@ -76,9 +76,9 @@ const GraphiQL = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const prettifyQuery =() => {
-    console.log("prettifyQuery")
-  }
+  const prettifyQuery = () => {
+    console.log('prettifyQuery');
+  };
 
   return (
     <div className="mx-auto p-4 flex w-4/5 bg-slate-600 rounded-lg text-gray-200 font-mono">
@@ -89,7 +89,12 @@ const GraphiQL = () => {
           onClick={toggleDrawer}
           className="mb-4 text-white bg-gray-700 hover:bg-gray-600 p-2 rounded"
         >
-          <Image src="/icon/close.png" alt="Close drawer" width={30} height={30} />
+          <Image
+            src="/icon/close.png"
+            alt="Close drawer"
+            width={30}
+            height={30}
+          />
         </button>
 
         <DocumentationViewer endpointUrl={endpointUrl} />
@@ -106,7 +111,7 @@ const GraphiQL = () => {
             <div className="text-lg font-bold text-gray-400"></div>
           </div>
           <div className="flex flex-col">
-          <IconButton
+            <IconButton
               iconSrc="/icon/play.png"
               iconAlt="Execute button"
               buttonText="Execute"
@@ -123,7 +128,7 @@ const GraphiQL = () => {
               iconAlt="Prettify"
               buttonText="Prettify"
               onClick={prettifyQuery}
-            />            
+            />
           </div>
         </div>
         <QueryEditor query={query} setQuery={setQuery} />

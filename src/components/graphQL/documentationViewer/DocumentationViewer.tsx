@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GraphiQLProvider } from '@graphiql/react';
 import { createGraphiQLFetcher } from '@graphiql/toolkit';
 import { DocExplorer } from '@graphiql/react';
-import { DocumentationViewerProps } from '@/interfaces/graphQl'
+import { DocumentationViewerProps } from '@/interfaces/graphQl';
 import { FetcherType } from '@/interfaces/graphQl';
 
 const DocumentationViewer: React.FC<DocumentationViewerProps> = ({
