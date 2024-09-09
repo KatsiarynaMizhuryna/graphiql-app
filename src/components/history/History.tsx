@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
-import { LinkButton } from '@/ui/linkButton';
+// import { LinkButton } from '@/ui/linkButton';
+import Link from 'next/link';
 
 type Request = {
   method: string;
@@ -74,18 +75,15 @@ const HistoryLogic = () => {
           {t('subTitle')}
         </p>
         <div className="mt-4 space-x-4">
-          <LinkButton
-            href={`/${locale}/restClient`}
-            data-testid="rest-client-button"
-          >
+          <Link href={`/${locale}/restClient`} data-testid="rest-client-button">
             {tBtn('restClient')}
-          </LinkButton>
-          <LinkButton
+          </Link>
+          <Link
             href={`/${locale}/graphQlClient`}
             data-testid="graphql-client-button"
           >
             {tBtn('graphQlClient')}
-          </LinkButton>
+          </Link>
         </div>
       </div>
     );
@@ -96,13 +94,13 @@ const HistoryLogic = () => {
       <div className="max-w-md mx-auto">
         {requests.map((request, index) => (
           <div key={index} className="bg-gray-100 p-4 mb-2 rounded-lg">
-            <LinkButton
+            <Link
               href={linkRequest(request.method)}
               data-testid="graphql-client-button"
               className="text-lg underline text-blue-600 hover:text-blue-800"
             >
               <strong>{request.method}</strong> {request.url}
-            </LinkButton>
+            </Link>
           </div>
         ))}
       </div>
