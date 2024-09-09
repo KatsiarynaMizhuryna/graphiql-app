@@ -1,5 +1,5 @@
 import React from 'react';
-import { EndpointInputProps } from '@/interfaces/graphQl/EndpointInputProps';
+import { EndpointInputProps } from '@/interfaces/graphQl';
 
 const EndpointInput: React.FC<EndpointInputProps> = ({
   endpointUrl,
