@@ -1,10 +1,14 @@
+import { useTranslations } from 'next-intl';
 import { FormInputs, FormProps } from '@/interfaces/form';
 import Input from './input';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import validationSchema from '@/utils/validation';
+import getValidationSchema from '@/utils/validation';
 
 const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
+  const t = useTranslations('Forms');
+  const validationSchema = getValidationSchema(t);
+
   const {
     register,
     handleSubmit,
@@ -31,7 +35,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
               htmlFor="email"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Email address
+              {t('labelEmail')}
             </label>
             <div className="mt-2">
               <Input
@@ -39,7 +43,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
                 type="email"
                 required
                 autoComplete="email"
-                placeholder="Enter email"
+                placeholder={t('placeholderEmail')}
                 {...register('email')}
                 className={`block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
                   errors.password ? 'ring-red-500' : ''
@@ -57,7 +61,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
               htmlFor="password"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Password
+              {t('labelPassword')}
             </label>
             <div className="mt-2">
               <Input
@@ -65,7 +69,7 @@ const Form: React.FC<FormProps> = ({ title, submitLabel, onSubmit }) => {
                 type="password"
                 required
                 autoComplete="current-password"
-                placeholder="Enter password"
+                placeholder={t('placeholderPassword')}
                 {...register('password')}
                 className={`block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
                   errors.password ? 'ring-red-500' : ''

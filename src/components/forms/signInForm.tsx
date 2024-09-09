@@ -1,18 +1,22 @@
 'use client';
+
+import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import Form from '@/ui/form';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from '@/../firebase';
 import { FormInputs } from '@/interfaces/form';
+import { checkedLocalStorage } from '@/store/localStorage';
+import toast from 'react-hot-toast';
 
 const SignIn: React.FC = () => {
-  const [error, setError] = useState('');
+  const t = useTranslations('Forms');
+  const locale = useLocale();
   const router = useRouter();
 
   const handleSignIn = async (inputs: FormInputs) => {
     const { email, password } = inputs;
-    setError('');
     try {
       const credential = await signInWithEmailAndPassword(
         getAuth(app),
@@ -20,25 +24,35 @@ const SignIn: React.FC = () => {
         password
       );
       const idToken = await credential.user.getIdToken();
-      await fetch('/login', {
+      await fetch(`/${locale}/login`, {
         headers: {
           Authorization: `Bearer ${idToken}`
         }
       });
-      router.push('/');
+
+      if (credential.user.email) {
+        checkedLocalStorage(credential.user.uid, credential.user.email);
+      }
+
+      router.push(`/${locale}/`);
+      toast.success(`Hi, ${credential.user.email}`);
     } catch (e) {
-      setError((e as Error).message);
+      const errorMessage = (e as Error).message
+        .replaceAll('-', ' ')
+        .replaceAll('(', ' ')
+        .replace(')', ' ')
+        .replace('.', '');
+      toast.error(errorMessage);
     }
   };
 
   return (
     <>
       <Form
-        title="Sign in to your account"
-        submitLabel="Sign in"
+        title={t('signIn.title')}
+        submitLabel={t('signIn.label')}
         onSubmit={handleSignIn}
       />
-      {error && <p className="text-red-600">{error}</p>}
     </>
   );
 };

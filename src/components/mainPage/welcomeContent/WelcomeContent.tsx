@@ -1,23 +1,58 @@
+import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { nunito, oswald, ubuntu } from '@/ui/fonts';
-import { data } from './data';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+
+interface Author {
+  id: string;
+  name: string;
+  linkGit: string;
+  rule: string;
+}
+
+interface CourseContent {
+  title: string;
+  imgSrc: string;
+  alt: string;
+  description: string;
+}
 
 export const WelcomeContent = () => {
+  const locale = useLocale();
+  const t = useTranslations('HomePage');
+  const [authors, setAuthors] = useState<Author[]>([]);
+  const [infoCourse, setInfoCourse] = useState<CourseContent[]>([]);
+
+  useEffect(() => {
+    const loadLocaleDate = async () => {
+      try {
+        const data = await import(`../../../../locales/${locale}.json`);
+        setAuthors(data.HomePage.aboutAuthors.authors);
+        setInfoCourse(data.HomePage.aboutCourse.content);
+      } catch (e) {
+        const errorMessage = (e as Error).message;
+        toast.error(errorMessage);
+      }
+    };
+    loadLocaleDate();
+  }, [locale]);
+
   return (
     <div className="flex gap-20 flex-col md:flex-row">
       <div className="flex flex-col gap-10 justify-between">
         <div className=" max-w-[700px] max-md:h-auto bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl">
           <h1 className={`${oswald.className} text-4xl font-bold mb-10`}>
-            {data.aboutProject.title}
+            {t('aboutProject.title')}
           </h1>
-          <div className="text-justify">{data.aboutProject.description}</div>
+          <div className="text-justify">{t('aboutProject.description')}</div>
         </div>
         <div className="max-w-[700px] bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl">
           <h2 className={`${oswald.className} text-4xl font-bold mb-10`}>
-            {data.aboutAuthors.title}
+            {t('aboutAuthors.title')}
           </h2>
-          {data.aboutAuthors.authors.map((author) => (
+          {authors.map((author) => (
             <div key={author.id}>
               <span className="whitespace-nowrap">
                 <Link href={author.linkGit} target="_blank" className="inline">
@@ -47,10 +82,10 @@ export const WelcomeContent = () => {
       </div>
       <div className="bg-warm-gray-300 rounded-lg shadow-lg p-4 transition-shadow duration-300 ease-in-out hover:shadow-xl">
         <h2 className={`${oswald.className} text-4xl font-bold mb-10`}>
-          {data.aboutCourse.title}
+          {t('aboutCourse.title')}
         </h2>
         <div className="text-justify">
-          {data.aboutCourse.content.map((block) => (
+          {infoCourse.map((block) => (
             <div key={block.title} className="mb-7">
               <h3 className={`${ubuntu.className} text-2xl font-bold mb-2`}>
                 {block.title}

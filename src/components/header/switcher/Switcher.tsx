@@ -1,12 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState, useTransition } from 'react';
 
 export const Switcher = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [, startTransition] = useTransition();
+  const router = useRouter();
+  const localActive = useLocale();
+  const pathname = usePathname();
+
+  const [isChecked, setIsChecked] = useState(localActive === 'ru');
 
   const handleChange = () => {
+    const locale = isChecked ? 'en' : 'ru';
+    const pathPage = pathname.split('/').slice(2).join('/');
     setIsChecked(!isChecked);
+    startTransition(() => {
+      const newUrl = `/${locale}/${pathPage}`;
+      router.replace(newUrl);
+    });
   };
 
   return (
