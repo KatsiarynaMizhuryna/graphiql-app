@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import EndpointInput from '../endpointInut/EndpointInput';
 import QueryEditor from '../queryEditor/QueryEditor';
@@ -10,23 +11,21 @@ import DocumentationViewer from '../documentationViewer/DocumentationViewer';
 import IconButton from '@/ui/iconButton';
 
 const GraphiQL = () => {
-  const [endpointUrl, setEndpointUrl] = useState('');
-  const [sdlUrl, setSdlUrl] = useState('');
+  const [endpointUrl, setEndpointUrl] = useState<string>('');
+  const [sdlUrl, setSdlUrl] = useState<string>('');
   const [headers, setHeaders] = useState<{ [key: string]: string }>();
-  const [query, setQuery] = useState('');
-  const [variables, setVariables] = useState('');
+  const [query, setQuery] = useState<string>('');
+  const [variables, setVariables] = useState<string>('');
   const [response, setResponse] = useState();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const handleExecuteQuery = async () => {
-    const headersObject = headers;
-
     try {
       const res = await fetch(endpointUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...headersObject
+          ...(headers || {})
         },
         body: JSON.stringify({
           query,
@@ -36,24 +35,9 @@ const GraphiQL = () => {
 
       const result = await res.json();
       localStorage.setItem('graphql_query', query);
-      console.log(query);
       setResponse(result);
-
-      // if (res.ok && result.data) {
-      //   const sdlRes = await fetch(sdlUrl || `${endpointUrl}?sdl`);
-      //  // const sdl = await sdlRes.json();
-
-      // }
     } catch (error) {
-      if (error instanceof Error) {
-        if (error.name) {
-          return {
-            error: { name: error.name, message: error.message }
-          };
-        }
-      }
-
-      return { error: { status: 500, data: error } };
+      console.error('Error:', (error as Error).message);
     }
   };
 
@@ -68,7 +52,7 @@ const GraphiQL = () => {
         console.error('Invalid headers format');
       }
     } catch (error) {
-      console.error('Error parsing headers:', error);
+      console.error('Error parsing headers:', (error as Error).message);
     }
   };
 
@@ -96,8 +80,7 @@ const GraphiQL = () => {
             height={30}
           />
         </button>
-
-        <DocumentationViewer endpointUrl={endpointUrl} />
+        <DocumentationViewer endpointUrl={sdlUrl} />
       </div>
       <section className="w-3/5 bg-slate-600 p-4 rounded-lg flex flex-col">
         <div className="flex justify-between bg-zinc-300 rounded-lg items-center">
@@ -117,12 +100,14 @@ const GraphiQL = () => {
               buttonText="Execute"
               onClick={handleExecuteQuery}
             />
-            <IconButton
-              iconSrc="/icon/docs.png"
-              iconAlt="Documentation"
-              buttonText="Documentation"
-              onClick={toggleDrawer}
-            />
+            {sdlUrl && (
+              <IconButton
+                iconSrc="/icon/docs.png"
+                iconAlt="Documentation"
+                buttonText="Documentation"
+                onClick={toggleDrawer}
+              />
+            )}
             <IconButton
               iconSrc="/icon/clear.png"
               iconAlt="Prettify"
@@ -132,7 +117,6 @@ const GraphiQL = () => {
           </div>
         </div>
         <QueryEditor query={query} setQuery={setQuery} />
-
         <div className="mt-4 flex space-x-4">
           <VariablesEditor variables={variables} setVariables={setVariables} />
           <HeaderEditor
