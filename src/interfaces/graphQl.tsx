@@ -28,6 +28,7 @@ export interface IconButtonWithTextProps {
 export interface QueryEditorProps {
   query: string;
   setQuery: (query: string) => void;
+  onBlur?: () => void;
 }
 
 export interface ResponseViewerProps {

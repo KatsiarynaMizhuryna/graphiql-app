@@ -1,5 +1,6 @@
 'use client';
-
+import gqlPrettier from 'graphql-prettier';
+import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import EndpointInput from '../endpointInut/EndpointInput';
 import QueryEditor from '../queryEditor/QueryEditor';
@@ -38,6 +39,7 @@ const GraphiQL = () => {
       setResponse(result);
     } catch (error) {
       console.error('Error:', (error as Error).message);
+      toast.error('Error: Check your query, please');
     }
   };
 
@@ -52,7 +54,7 @@ const GraphiQL = () => {
         console.error('Invalid headers format');
       }
     } catch (error) {
-      console.error('Error parsing headers:', (error as Error).message);
+      toast.error(`Error parsing headers: ${(error as Error).message}`);
     }
   };
 
@@ -61,7 +63,14 @@ const GraphiQL = () => {
   };
 
   const prettifyQuery = () => {
-    console.log('prettifyQuery');
+    try {
+      const formattedQuery = gqlPrettier(query);
+      setQuery(formattedQuery);
+      return formattedQuery;
+    } catch (error) {
+      toast.error(`Check your query, please: ${(error as Error).message}`);
+      return query;
+    }
   };
 
   return (
