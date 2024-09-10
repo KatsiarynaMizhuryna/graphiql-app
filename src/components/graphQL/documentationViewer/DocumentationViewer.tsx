@@ -5,6 +5,7 @@ import { createGraphiQLFetcher } from '@graphiql/toolkit';
 import { DocExplorer } from '@graphiql/react';
 import { DocumentationViewerProps } from '@/interfaces/graphQl';
 import { FetcherType } from '@/interfaces/graphQl';
+import '@graphiql/react/dist/style.css';
 
 const DocumentationViewer: React.FC<DocumentationViewerProps> = ({
   endpointUrl
@@ -24,7 +25,7 @@ const DocumentationViewer: React.FC<DocumentationViewerProps> = ({
 
   return (
     <GraphiQLProvider fetcher={fetcher}>
-      <div>
+      <div className="graphiql-container">
         <DocExplorer />
       </div>
     </GraphiQLProvider>

@@ -74,9 +74,9 @@ const GraphiQL = () => {
   };
 
   return (
-    <div className="mx-auto p-4 flex w-4/5 bg-slate-600 rounded-lg text-gray-200 font-mono">
+    <div className="relative mx-auto p-4 flex w-4/5 bg-slate-600 rounded-lg text-gray-200 font-mono">
       <div
-        className={`fixed top-0 right-0 h-full bg-gray-800 transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'} w-1/4 p-4 z-50 overflow-y-auto`}
+        className={`absolute top-0 right-0 h-full bg-gray-600 transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full hidden'} w-30p p-4 z-50 overflow-y-auto`}
       >
         <button
           onClick={toggleDrawer}
@@ -91,7 +91,7 @@ const GraphiQL = () => {
         </button>
         <DocumentationViewer endpointUrl={sdlUrl} />
       </div>
-      <section className="w-3/5 bg-slate-600 p-4 rounded-lg flex flex-col">
+      <section className="w-full bg-slate-600 p-4 rounded-lg flex flex-col">
         <div className="flex justify-between bg-zinc-300 rounded-lg items-center">
           <EndpointInput
             endpointUrl={endpointUrl}
