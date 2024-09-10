@@ -67,7 +67,7 @@ const GraphiQL = () => {
   return (
     <div className="mx-auto p-4 flex w-4/5 bg-slate-600 rounded-lg text-gray-200 font-mono">
       <div
-        className={`fixed top-0 right-0 h-full bg-gray-800 transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'} w-1/4 p-4 z-50`}
+        className={`fixed top-0 right-0 h-full bg-gray-800 transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full'} w-1/4 p-4 z-50 overflow-y-auto`}
       >
         <button
           onClick={toggleDrawer}
@@ -102,7 +102,7 @@ const GraphiQL = () => {
             />
             {sdlUrl && (
               <IconButton
-                iconSrc="/icon/docs.png"
+                iconSrc="/icon/documentation.png"
                 iconAlt="Documentation"
                 buttonText="Documentation"
                 onClick={toggleDrawer}

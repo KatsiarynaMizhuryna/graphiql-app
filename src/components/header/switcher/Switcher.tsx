@@ -25,7 +25,7 @@ export const Switcher = () => {
   return (
     <label
       htmlFor="accept-conditions"
-      className={`relative inline-block h-8 w-toggle border-indigo-600 cursor-pointer rounded-full transition ${isChecked ? 'bg-indigo-300' : 'bg-indigo-600'}`}
+      className={`relative inline-block h-8 w-toggle border-zinc-950 cursor-pointer rounded-full transition ${isChecked ? 'bg-zinc-950' : 'bg-zinc-700'}`}
     >
       <input
         type="checkbox"
