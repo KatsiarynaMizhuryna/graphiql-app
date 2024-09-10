@@ -51,7 +51,4 @@ body {
   .custom-toast-error {
     @apply bg-red-500 bg-opacity-20 border-2 border-red-500 text-white;
   }
-  .w-30p {
-    width: 30.333333%;
-  }
 }

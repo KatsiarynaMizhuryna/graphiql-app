@@ -76,7 +76,7 @@ const GraphiQL = () => {
   return (
     <div className="relative mx-auto p-4 flex w-4/5 bg-slate-600 rounded-lg text-gray-200 font-mono">
       <div
-        className={`absolute top-0 right-0 h-full bg-gray-600 transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full hidden'} w-30p p-4 z-50 overflow-y-auto`}
+        className={`absolute top-0 right-0 h-full bg-gray-600 transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full hidden'} w-2/5 p-4 z-50 overflow-y-auto`}
       >
         <button
           onClick={toggleDrawer}
