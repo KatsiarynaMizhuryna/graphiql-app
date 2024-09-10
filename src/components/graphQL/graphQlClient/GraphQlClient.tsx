@@ -102,7 +102,7 @@ const GraphiQL = () => {
             />
             {sdlUrl && (
               <IconButton
-                iconSrc="/icon/documentation.png"
+                iconSrc="/icon/docs.png"
                 iconAlt="Documentation"
                 buttonText="Documentation"
                 onClick={toggleDrawer}
