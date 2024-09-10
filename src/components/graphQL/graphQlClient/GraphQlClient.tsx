@@ -1,5 +1,4 @@
 'use client';
-import gqlPrettier from 'graphql-prettier';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import EndpointInput from '../endpointInut/EndpointInput';
@@ -10,6 +9,8 @@ import Image from 'next/image';
 import HeaderEditor from '../headersEditor/HeadersEditor';
 import DocumentationViewer from '../documentationViewer/DocumentationViewer';
 import IconButton from '@/ui/iconButton';
+import prettifyQuery from '@/utils/prettifyQuery';
+import toggleDrawer from '@/utils/toggleDrawer';
 
 const GraphiQL = () => {
   const [endpointUrl, setEndpointUrl] = useState<string>('');
@@ -58,28 +59,13 @@ const GraphiQL = () => {
     }
   };
 
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
-  };
-
-  const prettifyQuery = () => {
-    try {
-      const formattedQuery = gqlPrettier(query);
-      setQuery(formattedQuery);
-      return formattedQuery;
-    } catch (error) {
-      toast.error(`Check your query, please: ${(error as Error).message}`);
-      return query;
-    }
-  };
-
   return (
     <div className="relative mx-auto p-4 flex w-4/5 bg-slate-600 rounded-lg text-gray-200 font-mono">
       <div
         className={`absolute top-0 right-0 h-full bg-gray-600 transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : 'translate-x-full hidden'} w-2/5 p-4 z-50 overflow-y-auto`}
       >
         <button
-          onClick={toggleDrawer}
+          onClick={() => toggleDrawer({ isDrawerOpen, setIsDrawerOpen })}
           className="mb-4 text-white bg-gray-700 hover:bg-gray-600 p-2 rounded"
         >
           <Image
@@ -114,14 +100,14 @@ const GraphiQL = () => {
                 iconSrc="/icon/docs.png"
                 iconAlt="Documentation"
                 buttonText="Documentation"
-                onClick={toggleDrawer}
+                onClick={() => toggleDrawer({ isDrawerOpen, setIsDrawerOpen })}
               />
             )}
             <IconButton
               iconSrc="/icon/clear.png"
               iconAlt="Prettify"
               buttonText="Prettify"
-              onClick={prettifyQuery}
+              onClick={() => prettifyQuery({ query, setQuery })}
             />
           </div>
         </div>

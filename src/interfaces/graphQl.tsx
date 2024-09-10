@@ -31,8 +31,18 @@ export interface QueryEditorProps {
   onBlur?: () => void;
 }
 
+export interface prettifyQueryProps {
+  query: string;
+  setQuery: (query: string) => void;
+}
+
 export interface ResponseViewerProps {
   response: string | undefined;
+}
+
+export interface toggleDrawerProps {
+  isDrawerOpen: boolean;
+  setIsDrawerOpen: (isOpen: boolean) => void;
 }
 
 export interface VariablesEditorProps {
