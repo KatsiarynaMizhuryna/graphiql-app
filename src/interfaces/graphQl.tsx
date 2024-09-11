@@ -48,4 +48,5 @@ export interface toggleDrawerProps {
 export interface VariablesEditorProps {
   variables: string;
   setVariables: (variables: string) => void;
+  onBlur?: () => void;
 }

@@ -2,12 +2,11 @@
 import { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
-// import { LinkButton } from '@/ui/linkButton';
 import Link from 'next/link';
 
 type Request = {
   method: string;
-  url: string;
+  requestGraphQL: string;
   time: string;
 };
 
@@ -19,12 +18,8 @@ const HistoryLogic = () => {
   const [requestsExist, setRequestsExist] = useState(false);
   const [requests, setRequests] = useState<Request[]>([]);
 
-  const saveLocalStorage = (requests: Request[]) => {
-    localStorage.setItem('requestsHistory', JSON.stringify(requests));
-  };
-
   const loadLocalStorage = () => {
-    const storedRequests = localStorage.getItem('requestsHistory');
+    const storedRequests = localStorage.getItem('graphql_requests');
     if (storedRequests) {
       const parsedRequests: Request[] = JSON.parse(storedRequests);
       parsedRequests.sort(
@@ -38,25 +33,6 @@ const HistoryLogic = () => {
   };
 
   useEffect(() => {
-    const mockRequests: Request[] = [
-      {
-        method: 'POST',
-        url: 'https://api.example.com/resource',
-        time: new Date().toISOString()
-      },
-      {
-        method: 'GET',
-        url: 'https://api.example.com/resource/1',
-        time: new Date().toISOString()
-      },
-      {
-        method: 'GRAPHQL',
-        url: 'https://graphql.example.com/query',
-        time: new Date().toISOString()
-      }
-    ];
-
-    saveLocalStorage(mockRequests);
     loadLocalStorage();
   }, []);
 
@@ -89,18 +65,33 @@ const HistoryLogic = () => {
     );
   }
 
+  const handleButtonClick = (request: Request) => {
+    // const queryParams = qs.stringify({
+    //   method: request.method,
+    //   requestGraphQL: request.requestGraphQL,
+    //   time: request.time
+    // });
+    console.log(linkRequest(request.method));
+    console.log(request.requestGraphQL);
+    //router.push(`${linkRequest(request.method)}/${request.requestGraphQL}`);
+  };
+
   return (
     <div className="text-center" data-testid="history-container">
       <div className="max-w-md mx-auto">
         {requests.map((request, index) => (
           <div key={index} className="bg-gray-100 p-4 mb-2 rounded-lg">
-            <Link
-              href={linkRequest(request.method)}
-              data-testid="graphql-client-button"
+            <p>
+              {request.time.split('T')[0]}{' '}
+              {request.time.split('T')[1].split('.')[0]}
+            </p>
+            <button
+              onClick={() => handleButtonClick(request)}
+              data-testid="request-button"
               className="text-lg underline text-blue-600 hover:text-blue-800"
             >
-              <strong>{request.method}</strong> {request.url}
-            </Link>
+              <strong>{request.requestGraphQL}</strong>
+            </button>
           </div>
         ))}
       </div>
