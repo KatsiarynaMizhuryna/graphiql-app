@@ -47,13 +47,13 @@ const GraphiQL = ({ initialEndpointUrl = '', initialQuery = '' }) => {
       const result = await res.json();
       localStorage.setItem('graphql_query', query);
       setResponse(result);
-      saveToHistory(
+      saveToHistory({
         encodedUrl,
         encodedQuery,
         encodedVariables,
-        'GRAPHQL',
-        'graphql_requests'
-      );
+        method: 'GRAPHQL',
+        localStorageKey: 'graphql_requests'
+      });
     } catch (error) {
       console.error('Error:', (error as Error).message);
       toast.error('Error: Check your query, please');
