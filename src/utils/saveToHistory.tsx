@@ -1,10 +1,12 @@
-const saveToHistory = (
-  encodedUrl: string,
-  encodedQuery: string,
-  encodedVariables: string,
-  method: string,
-  localStorageKey: string
-) => {
+import { SaveToHistoryProps } from '@/interfaces/saveToHistoryProps';
+
+const saveToHistory = ({
+  encodedUrl,
+  encodedQuery,
+  encodedVariables,
+  method,
+  localStorageKey
+}: SaveToHistoryProps) => {
   const newUrl = `${method}/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}`;
 
   const requestData = {
