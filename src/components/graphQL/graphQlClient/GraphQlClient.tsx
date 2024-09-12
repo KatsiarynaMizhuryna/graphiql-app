@@ -12,55 +12,25 @@ import IconButton from '@/ui/iconButton';
 import prettifyQuery from '@/utils/prettifyQuery';
 import toggleDrawer from '@/utils/toggleDrawer';
 import encodeBase64 from '@/utils/encodeBase64';
-import { useSearchParams } from 'next/navigation';
+import saveToHistory from '@/utils/saveToHistory';
 
-// const decodeBase64 = (encodedString: string) => {
-//   try {
-//     return decodeURIComponent(atob(encodedString));
-//   } catch (e) {
-//     console.error('Error decoding base64 string:', e);
-//     return '';
-//   }
-// };
-
-const GraphiQL = () => {
-  const [endpointUrl, setEndpointUrl] = useState<string>('');
+const GraphiQL = ({ initialEndpointUrl = '', initialQuery = '' }) => {
+  const [endpointUrl, setEndpointUrl] = useState<string>(initialEndpointUrl);
   const [sdlUrl, setSdlUrl] = useState<string>('');
   const [headers, setHeaders] = useState<{ [key: string]: string }>();
-  const [query, setQuery] = useState<string>('');
+  const [query, setQuery] = useState<string>(initialQuery);
   const [variables, setVariables] = useState<string>('');
   const [response, setResponse] = useState();
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
-  const searchParams = useSearchParams();
-  const queryFromHistory = searchParams.get('query');
+  const encodedUrl = encodeBase64(endpointUrl);
+  const encodedQuery = encodeBase64(query);
+  const encodedVariables = encodeBase64(variables);
 
   const handleBlur = () => {
-    const encodedUrl = encodeBase64(endpointUrl);
-    const encodedQuery = encodeBase64(query);
-    const encodedVariables = encodeBase64(variables);
     const newUrl = `${window.location.origin}${window.location.pathname.split('/GRAPHQL')[0]}/GRAPHQL/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}`;
-
     window.history.replaceState({}, '', newUrl);
-    console.log(queryFromHistory);
   };
 
-  const saveToHistory = () => {
-    const encodedUrl = encodeBase64(endpointUrl);
-    const encodedQuery = encodeBase64(query);
-    const encodedVariables = encodeBase64(variables);
-    const newUrl = `${window.location.origin}${window.location.pathname.split('/GRAPHQL')[0]}/GRAPHQL/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}`;
-
-    const requestData = {
-      method: 'GRAPHQL',
-      requestGraphQL: newUrl.split('graphQlClient/')[1] || '',
-      time: new Date().toISOString()
-    };
-    const savedRequests = JSON.parse(
-      localStorage.getItem('graphql_requests') || '[]'
-    );
-    savedRequests.push(requestData);
-    localStorage.setItem('graphql_requests', JSON.stringify(savedRequests));
-  };
   const handleExecuteQuery = async () => {
     try {
       const res = await fetch(endpointUrl, {
@@ -77,7 +47,13 @@ const GraphiQL = () => {
       const result = await res.json();
       localStorage.setItem('graphql_query', query);
       setResponse(result);
-      saveToHistory();
+      saveToHistory(
+        encodedUrl,
+        encodedQuery,
+        encodedVariables,
+        'GRAPHQL',
+        'graphql_requests'
+      );
     } catch (error) {
       console.error('Error:', (error as Error).message);
       toast.error('Error: Check your query, please');
