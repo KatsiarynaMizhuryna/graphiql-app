@@ -38,6 +38,7 @@ export interface prettifyQueryProps {
 
 export interface ResponseViewerProps {
   response: string | undefined;
+  status: string;
 }
 
 export interface toggleDrawerProps {

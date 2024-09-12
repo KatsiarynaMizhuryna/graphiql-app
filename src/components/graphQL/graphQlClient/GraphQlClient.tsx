@@ -25,6 +25,7 @@ const GraphiQL = ({
   const [headers, setHeaders] = useState<{ [key: string]: string }>();
   const [query, setQuery] = useState<string>(initialQuery);
   const [variables, setVariables] = useState<string>(initialVariables);
+  const [status, setStatus] = useState<string>('');
   const [response, setResponse] = useState();
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const encodedUrl = encodeBase64(endpointUrl);
@@ -52,6 +53,7 @@ const GraphiQL = ({
       const result = await res.json();
       localStorage.setItem('graphql_query', query);
       setResponse(result);
+      setStatus(res.status.toString());
       saveToHistory({
         encodedUrl,
         encodedQuery,
@@ -141,7 +143,7 @@ const GraphiQL = ({
           />
         </div>
       </section>
-      <ResponseViewer response={response} />
+      <ResponseViewer response={response} status={status} />
     </div>
   );
 };
