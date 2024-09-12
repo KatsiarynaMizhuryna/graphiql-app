@@ -14,12 +14,16 @@ import toggleDrawer from '@/utils/toggleDrawer';
 import encodeBase64 from '@/utils/encodeBase64';
 import saveToHistory from '@/utils/saveToHistory';
 
-const GraphiQL = ({ initialEndpointUrl = '', initialQuery = '' }) => {
+const GraphiQL = ({
+  initialEndpointUrl = '',
+  initialQuery = '',
+  initialVariables = ''
+}) => {
   const [endpointUrl, setEndpointUrl] = useState<string>(initialEndpointUrl);
   const [sdlUrl, setSdlUrl] = useState<string>('');
   const [headers, setHeaders] = useState<{ [key: string]: string }>();
   const [query, setQuery] = useState<string>(initialQuery);
-  const [variables, setVariables] = useState<string>('');
+  const [variables, setVariables] = useState<string>(initialVariables);
   const [response, setResponse] = useState();
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
   const encodedUrl = encodeBase64(endpointUrl);
