@@ -16,11 +16,12 @@ import saveToHistory from '@/utils/saveToHistory';
 
 const GraphiQL = ({
   initialEndpointUrl = '',
+  initialSdlEndpointUrl = '',
   initialQuery = '',
   initialVariables = ''
 }) => {
   const [endpointUrl, setEndpointUrl] = useState<string>(initialEndpointUrl);
-  const [sdlUrl, setSdlUrl] = useState<string>('');
+  const [sdlUrl, setSdlUrl] = useState<string>(initialSdlEndpointUrl);
   const [headers, setHeaders] = useState<{ [key: string]: string }>();
   const [query, setQuery] = useState<string>(initialQuery);
   const [variables, setVariables] = useState<string>(initialVariables);
