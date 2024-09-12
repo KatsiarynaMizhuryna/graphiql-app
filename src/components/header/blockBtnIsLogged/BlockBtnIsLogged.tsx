@@ -22,6 +22,7 @@ export const BlockBtnIsLogged = () => {
     }
 
     try {
+      localStorage.removeItem('graphql_requests');
       await signOut(auth);
     } catch (error) {
       console.error('Error signing out: ', error);
