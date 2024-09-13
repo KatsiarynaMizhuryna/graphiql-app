@@ -11,18 +11,17 @@ import { getAuth } from 'firebase/auth';
 export const Header = () => {
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
-
   const [isSticky, setIsSticky] = useState(false);
+  const handleScroll = () => {
+    const currentScroll = window.scrollY;
+    if (currentScroll > 10) {
+      setIsSticky(true);
+    } else {
+      setIsSticky(false);
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > 150) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
