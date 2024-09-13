@@ -4,10 +4,11 @@ const saveToHistory = ({
   encodedUrl,
   encodedQuery,
   encodedVariables,
+  encodedHeaders,
   method,
   localStorageKey
 }: SaveToHistoryProps) => {
-  const newUrl = `${method}/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}`;
+  const newUrl = `${method}/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}&headers=${encodedHeaders}`;
 
   const requestData = {
     method: method,

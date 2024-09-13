@@ -18,11 +18,12 @@ import { usePathname } from 'next/navigation';
 const GraphiQL = ({
   initialEndpointUrl = '',
   initialQuery = '',
-  initialVariables = ''
+  initialVariables = '',
+  initialHeaders = ''
 }) => {
   const [endpointUrl, setEndpointUrl] = useState<string>(initialEndpointUrl);
   const [sdlUrl, setSdlUrl] = useState<string>(initialEndpointUrl);
-  const [headers, setHeaders] = useState<string>('');
+  const [headers, setHeaders] = useState<string>(initialHeaders);
   const [query, setQuery] = useState<string>(initialQuery);
   const [variables, setVariables] = useState<string>(initialVariables);
   const [status, setStatus] = useState<string>('');
@@ -71,6 +72,7 @@ const GraphiQL = ({
         encodedUrl,
         encodedQuery,
         encodedVariables,
+        encodedHeaders,
         method: 'GRAPHQL',
         localStorageKey: 'graphql_requests'
       });
