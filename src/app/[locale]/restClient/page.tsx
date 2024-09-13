@@ -1,11 +1,11 @@
-import { useTranslations } from 'next-intl';
+'use client';
+
+import ClientContent from '@/components/RESTClient/clientContent/ClientContent';
 
 const RestClientPage = () => {
-  const t = useTranslations('RestClientPage');
-
   return (
-    <main className="flex-grow flex flex-col items-center justify-around p-24">
-      <h1 className="text-4xl">{t('title')}</h1>
+    <main className="flex-grow flex flex-col gap-[50px] items-center justify-around p-24">
+      <ClientContent />
     </main>
   );
 };
