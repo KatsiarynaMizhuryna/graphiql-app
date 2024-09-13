@@ -35,7 +35,7 @@ const SignIn: React.FC = () => {
       }
 
       router.push(`/${locale}/`);
-      toast.success(`Hi, ${credential.user.email}`);
+      toast.success(`${t('hi')}, ${credential.user.email}`);
     } catch (e) {
       const errorMessage = (e as Error).message
         .replaceAll('-', ' ')

@@ -67,10 +67,18 @@
     "title": "Страница GraphQl"
   },
   "GraphClientPage": {
-    "title": "Страница клиента GraphQL"
+    "title": "Страница клиента GraphQL",
+    "endpoint_url": "URL конечной точки",
+    "query_placeholder": "Введите ваш запрос здесь...",
+    "variables": "Переменные",
+    "headers": "Заголовки",
+    "status": "Статус",
+    "execute": "Выполнить",
+    "prettify": "Форматировать",
+    "documentation": "Документация"
   },
   "RestClientPage": {
-    "title": "Страница REST клтента"
+    "title": "Страница REST клиента"
   },
   "HistoryPage": {
     "title": "История",
@@ -85,6 +93,12 @@
     "title": "Страница ошибки",
     "description": "Не удалось найти запрашиваемый ресурс"
   },
+  "Errors": {
+    "endpoint_required": "Требуется URL конечной точки",
+    "check_query": "Ошибка: Проверьте ваш запрос, пожалуйста",
+    "valid_graphQL_endpoint": "Пожалуйста, укажите правильную GraphQL-конечную точку"
+  },
+  "loading": "Загрузка...",
   "buttons": {
     "redirect": {
       "restClient": "REST Клиент",
@@ -96,10 +110,12 @@
     },
     "action": {
       "submit": "Отправить",
-      "logOut": "Выход"
+      "logOut": "Выход",
+      "welcome": "Добро пожаловать"
     }
   },
   "Forms": {
+    "hi": "Привет",
     "signIn": {
       "title": "Войдите в свой аккаунт",
       "label": "Войти"

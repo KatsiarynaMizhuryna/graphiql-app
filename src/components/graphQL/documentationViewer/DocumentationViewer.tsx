@@ -5,11 +5,14 @@ import { createGraphiQLFetcher } from '@graphiql/toolkit';
 import { DocExplorer } from '@graphiql/react';
 import { DocumentationViewerProps } from '@/interfaces/graphQl';
 import { FetcherType } from '@/interfaces/graphQl';
+import '@graphiql/react/dist/style.css';
+import { useTranslations } from 'next-intl';
 
 const DocumentationViewer: React.FC<DocumentationViewerProps> = ({
   endpointUrl
 }) => {
   const [fetcher, setFetcher] = useState<FetcherType | null>(null);
+  const t = useTranslations('Errors');
 
   useEffect(() => {
     if (typeof window !== 'undefined' && endpointUrl) {
@@ -19,12 +22,12 @@ const DocumentationViewer: React.FC<DocumentationViewerProps> = ({
   }, [endpointUrl]);
 
   if (!fetcher) {
-    return <div>Please provide a valid GraphQL endpoint.</div>;
+    return <div>{t('valid_graphQL_endpoint')}</div>;
   }
 
   return (
     <GraphiQLProvider fetcher={fetcher}>
-      <div>
+      <div className="graphiql-container">
         <DocExplorer />
       </div>
     </GraphiQLProvider>

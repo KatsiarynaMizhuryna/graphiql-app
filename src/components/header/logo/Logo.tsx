@@ -12,7 +12,7 @@ export const Logo = () => {
           alt="logo"
           width={100}
           height={100}
-          className="mr-4 transform hover:scale-105 transition-transform duration-200 max-sm:max-w-15 max-sm:max-h-[70px]"
+          className="w-full h-auto mr-4 transform hover:scale-105 transition-transform duration-200 max-sm:max-w-15 max-sm:max-h-[70px]"
         />
       </Link>
     </div>

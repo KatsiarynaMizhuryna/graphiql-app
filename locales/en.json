@@ -67,13 +67,21 @@
     "title": "Sign Up"
   },
   "GraphClientPage": {
-    "title": "Graph-QL Client PAGE"
+    "title": "Graph-QL Client PAGE",
+    "endpoint_url": "Endpoint URL",
+    "query_placeholder": "Type your query here...",
+    "variables": "Variables",
+    "headers": "Headers",
+    "status": "Status",
+    "execute": "Execute",
+    "prettify": "Prettify",
+    "documentation": "Documentation"
   },
   "RestClientPage": {
     "title": "REST Client"
   },
   "HistoryPage": {
-    "title": "History PAGE",
+    "title": "History",
     "subTitle": "You have not executed any requests yet"
   },
   "NotFoundPage": {
@@ -81,6 +89,12 @@
     "description": "Could not find requested resource",
     "homeBtn": "Go Home"
   },
+  "Errors": {
+    "endpoint_required": "'Error: Endpoint URL is required.'",
+    "check_query": "'Error: Check your query, please'",
+    "valid_graphQL_endpoint": "Please provide a valid GraphQL endpoint."
+  },
+  "loading": "Loading...",
   "buttons": {
     "redirect": {
       "restClient": "REST Client",
@@ -92,10 +106,12 @@
     },
     "action": {
       "submit": "Submit",
-      "logOut": "Sign OUT"
+      "logOut": "Sign OUT",
+      "welcome": "Welcome"
     }
   },
   "Forms": {
+    "hi": "Hi",
     "signIn": {
       "title": "Sign in to your account",
       "label": "Sign in"
