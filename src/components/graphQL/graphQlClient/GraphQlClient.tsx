@@ -13,6 +13,7 @@ import prettifyQuery from '@/utils/prettifyQuery';
 import toggleDrawer from '@/utils/toggleDrawer';
 import encodeBase64 from '@/utils/encodeBase64';
 import saveToHistory from '@/utils/saveToHistory';
+import { usePathname } from 'next/navigation';
 
 const GraphiQL = ({
   initialEndpointUrl = '',
@@ -31,13 +32,20 @@ const GraphiQL = ({
   const encodedUrl = encodeBase64(endpointUrl);
   const encodedQuery = encodeBase64(query);
   const encodedVariables = encodeBase64(variables);
+  const pathname = usePathname();
 
   const handleBlur = () => {
-    const newUrl = `${window.location.origin}${window.location.pathname.split('/GRAPHQL')[0]}/GRAPHQL/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}`;
+    if (!endpointUrl) {
+      toast.error('Error: Endpoint URL is required.');
+      return;
+    }
+    const locale = pathname.split('/')[1];
+    const newUrl = `${window.location.origin}/${locale}/graphQlClient/GRAPHQL/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}`;
     window.history.replaceState({}, '', newUrl);
   };
 
   const handleExecuteQuery = async () => {
+    console.log('EXECUTE');
     try {
       const res = await fetch(endpointUrl, {
         method: 'POST',
@@ -50,6 +58,7 @@ const GraphiQL = ({
           variables: JSON.parse(variables || '{}')
         })
       });
+      console.log('HERE');
       const result = await res.json();
       localStorage.setItem('graphql_query', query);
       setResponse(result);

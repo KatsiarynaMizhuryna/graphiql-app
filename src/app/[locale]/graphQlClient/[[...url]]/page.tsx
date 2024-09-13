@@ -3,15 +3,15 @@ import { useSearchParams } from 'next/navigation';
 import GraphiQL from '@/components/graphQL/graphQlClient/GraphQlClient';
 import decodeBase64 from '@/utils/decodeBase64';
 
-const GraphQLClientPage = ({ params }: { params: { url?: string } }) => {
+const GraphQLClientPage = ({ params }: { params: { url?: string[] } }) => {
   const searchParams = useSearchParams();
   const queryParam = searchParams.get('query');
   const variablesParam = searchParams.get('variables');
   const decodedUrl = params.url
-    ? decodeBase64(decodeURIComponent(params.url))
+    ? decodeBase64(decodeURIComponent(params.url[1]))
     : '';
-  const decodedQuery = decodeBase64(queryParam!) || '';
-  const decodedVariables = decodeBase64(variablesParam!) || '';
+  const decodedQuery = queryParam ? decodeBase64(queryParam) : '';
+  const decodedVariables = variablesParam ? decodeBase64(variablesParam) : '';
   const decodedSdlUrl = `${decodedUrl}?sdl`;
   return (
     <div>
