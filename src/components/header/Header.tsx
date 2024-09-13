@@ -11,18 +11,22 @@ import { getAuth } from 'firebase/auth';
 export const Header = () => {
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
-
   const [isSticky, setIsSticky] = useState(false);
+  // const handleScroll = () => {
+  //   const currentScroll = window.scrollY;
+  //   if (currentScroll > 70) {
+  //     setIsSticky(true);
+  //   } else {
+  //     setIsSticky(false);
+  //   }
+  // };
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const isSticky = scrollTop >= 10;
+    setIsSticky(isSticky);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      if (currentScroll > 150) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -33,8 +37,8 @@ export const Header = () => {
     <header
       className={`page-header w-full top-0 z-50 transition-transform duration-300 ease-out ${
         isSticky
-          ? 'fixed shadow-lg py-2 backdrop-blur-lg transform translate-y-0 animate-slideDown'
-          : ''
+          ? 'fixed shadow-lg py-2 backdrop-blur-lg animate-slideDown'
+          : 'relative'
       }`}
       data-testid="header"
     >

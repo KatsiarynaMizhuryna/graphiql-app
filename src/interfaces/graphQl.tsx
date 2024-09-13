@@ -14,8 +14,8 @@ export interface EndpointInputProps {
 export type FetcherType = ReturnType<typeof createGraphiQLFetcher>;
 
 export interface HeaderEditorProps {
-  headers: { [key: string]: string } | undefined;
-  onHeadersChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  headers: string;
+  setHeaders: (headers: string) => void;
 }
 
 export interface IconButtonWithTextProps {
@@ -23,15 +23,32 @@ export interface IconButtonWithTextProps {
   iconAlt: string;
   buttonText: string;
   onClick: () => void;
+  isActive?: boolean;
 }
 
 export interface QueryEditorProps {
+  query: string;
+  setQuery: (query: string) => void;
+  onBlur?: () => void;
+}
+
+export interface prettifyQueryProps {
   query: string;
   setQuery: (query: string) => void;
 }
 
 export interface ResponseViewerProps {
   response: string | undefined;
+  status: string;
+}
+
+export interface toggleDrawerProps {
+  isDrawerOpen: boolean;
+  setIsDrawerOpen: (isOpen: boolean) => void;
+}
+export interface handleToggleVisibilityProps {
+  isVisible: boolean;
+  setIsVisible: (isOpen: boolean) => void;
 }
 
 export interface VariablesEditorProps {
