@@ -109,7 +109,7 @@ const GraphiQL = ({
         </button>
         <DocumentationViewer endpointUrl={sdlUrl} />
       </div>
-      <section className="w-full bg-slate-600 p-4 rounded-lg flex flex-col">
+      <section className="w-full bg-slate-600 p-4 rounded-lg flex flex-col overflow-auto">
         <div className="flex justify-between bg-zinc-300 rounded-lg items-center">
           <EndpointInput
             endpointUrl={endpointUrl}
