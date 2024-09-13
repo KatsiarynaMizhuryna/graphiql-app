@@ -14,9 +14,9 @@ type Request = {
 
 const HistoryLogic = () => {
   const t = useTranslations('HistoryPage');
+  const tt = useTranslations('loading');
   const locale = useLocale();
   const tBtn = useTranslations('buttons.redirect');
-
   const [requests, setRequests] = useState<Request[] | null>(null);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const HistoryLogic = () => {
   if (requests === null) {
     return (
       <div className="text-center p-6 bg-gray-50 min-h-screen">
-        <p>Loading...</p>
+        <p>{tt('loading')}</p>
       </div>
     );
   }

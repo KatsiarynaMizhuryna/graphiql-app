@@ -1,5 +1,6 @@
 import React from 'react';
 import { EndpointInputProps } from '@/interfaces/graphQl';
+import { useTranslations } from 'next-intl';
 
 const EndpointInput: React.FC<EndpointInputProps> = ({
   endpointUrl,
@@ -7,6 +8,7 @@ const EndpointInput: React.FC<EndpointInputProps> = ({
   sdlUrl,
   setSdlUrl
 }) => {
+  const t = useTranslations('GraphClientPage');
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const url = event.target.value;
     setEndpointUrl(url);
@@ -18,7 +20,7 @@ const EndpointInput: React.FC<EndpointInputProps> = ({
         htmlFor="endpointUrl"
         className="block text-sm font-medium text-gray-400"
       >
-        Endpoint URL:
+        {t('endpoint_url')}:
       </label>
       <input
         type="text"

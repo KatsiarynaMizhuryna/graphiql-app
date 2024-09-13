@@ -1,5 +1,4 @@
 'use client';
-
 import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/ui/button';
 import { useRouter } from 'next/navigation';
@@ -33,7 +32,7 @@ export const BlockBtnIsLogged = () => {
   return (
     <div className="flex gap-5 items-center">
       <div className="max-sm:text-center">
-        Welcome, <b>{email}</b>!
+        {t('welcome')}, <b>{email}</b>!
       </div>
       <Button onClick={handleSignOut}>{t('logOut')}</Button>
     </div>

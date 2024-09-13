@@ -16,6 +16,7 @@ import saveToHistory from '@/utils/saveToHistory';
 import { usePathname } from 'next/navigation';
 import TextButton from '@/ui/textButton';
 import handleToggleVisibility from '@/utils/handleToggleVisibility';
+import { useTranslations } from 'next-intl';
 
 const GraphiQL = ({
   initialEndpointUrl = '',
@@ -40,6 +41,8 @@ const GraphiQL = ({
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const variablesEditor = 'variables editor';
   const headersEditor = 'headers editor';
+  const t = useTranslations('GraphClientPage');
+  const tt = useTranslations('Errors');
 
   const saveHeaders = () => {
     const parsingHeaders = JSON.parse(headers || '{}');
@@ -51,7 +54,7 @@ const GraphiQL = ({
 
   const handleBlur = () => {
     if (!endpointUrl) {
-      toast.error('Error: Endpoint URL is required.');
+      toast.error(tt('endpoint_required'));
       return;
     }
     const locale = pathname.split('/')[1];
@@ -84,7 +87,7 @@ const GraphiQL = ({
       });
     } catch (error) {
       console.error('Error:', (error as Error).message);
-      toast.error('Error: Check your query, please');
+      toast.error(tt('check_query'));
     }
   };
 
@@ -120,22 +123,22 @@ const GraphiQL = ({
           <div className="flex flex-col">
             <IconButton
               iconSrc="/icon/play.png"
-              iconAlt="Execute button"
-              buttonText="Execute"
+              iconAlt={t('execute')}
+              buttonText={t('execute')}
               onClick={handleExecuteQuery}
             />
             {sdlUrl && (
               <IconButton
                 iconSrc="/icon/docs.png"
-                iconAlt="Documentation"
-                buttonText="Documentation"
+                iconAlt={t('documentation')}
+                buttonText={t('documentation')}
                 onClick={() => toggleDrawer({ isDrawerOpen, setIsDrawerOpen })}
               />
             )}
             <IconButton
               iconSrc="/icon/clear.png"
-              iconAlt="Prettify"
-              buttonText="Prettify"
+              iconAlt={t('prettify')}
+              buttonText={t('prettify')}
               onClick={() => prettifyQuery({ query, setQuery })}
             />
           </div>
@@ -145,12 +148,12 @@ const GraphiQL = ({
           <div className="flex justify-between items-center mb-2">
             <div className="flex space-x-2">
               <TextButton
-                buttonText="Variables"
+                buttonText={t('variables')}
                 onClick={() => setSelectedEditor(variablesEditor)}
                 isActive={selectedEditor === variablesEditor}
               />
               <TextButton
-                buttonText="Headers"
+                buttonText={t('headers')}
                 onClick={() => setSelectedEditor(headersEditor)}
                 isActive={selectedEditor === headersEditor}
               />
