@@ -14,7 +14,7 @@ export const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
   const handleScroll = () => {
     const currentScroll = window.scrollY;
-    if (currentScroll > 10) {
+    if (currentScroll > 70) {
       setIsSticky(true);
     } else {
       setIsSticky(false);
