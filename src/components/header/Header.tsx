@@ -12,13 +12,18 @@ export const Header = () => {
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
   const [isSticky, setIsSticky] = useState(false);
+  // const handleScroll = () => {
+  //   const currentScroll = window.scrollY;
+  //   if (currentScroll > 70) {
+  //     setIsSticky(true);
+  //   } else {
+  //     setIsSticky(false);
+  //   }
+  // };
   const handleScroll = () => {
-    const currentScroll = window.scrollY;
-    if (currentScroll > 70) {
-      setIsSticky(true);
-    } else {
-      setIsSticky(false);
-    }
+    const scrollTop = window.scrollY;
+    const isSticky = scrollTop >= 10;
+    setIsSticky(isSticky);
   };
 
   useEffect(() => {

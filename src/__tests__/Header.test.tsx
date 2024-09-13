@@ -68,7 +68,7 @@ describe('Header Component', () => {
     fireEvent.scroll(window, { target: { scrollY: 200 } });
     expect(header).toHaveClass('fixed shadow-lg py-2 backdrop-blur-lg');
 
-    fireEvent.scroll(window, { target: { scrollY: 69 } });
+    fireEvent.scroll(window, { target: { scrollY: 9 } });
 
     expect(header).not.toHaveClass('fixed shadow-lg py-2 backdrop-blur-lg');
   });
