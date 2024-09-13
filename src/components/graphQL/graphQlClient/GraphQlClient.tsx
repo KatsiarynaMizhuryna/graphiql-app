@@ -17,13 +17,12 @@ import { usePathname } from 'next/navigation';
 
 const GraphiQL = ({
   initialEndpointUrl = '',
-  initialSdlEndpointUrl = '',
   initialQuery = '',
   initialVariables = ''
 }) => {
   const [endpointUrl, setEndpointUrl] = useState<string>(initialEndpointUrl);
-  const [sdlUrl, setSdlUrl] = useState<string>(initialSdlEndpointUrl);
-  const [headers, setHeaders] = useState<{ [key: string]: string }>();
+  const [sdlUrl, setSdlUrl] = useState<string>(initialEndpointUrl);
+  const [headers, setHeaders] = useState<string>('');
   const [query, setQuery] = useState<string>(initialQuery);
   const [variables, setVariables] = useState<string>(initialVariables);
   const [status, setStatus] = useState<string>('');
@@ -32,7 +31,16 @@ const GraphiQL = ({
   const encodedUrl = encodeBase64(endpointUrl);
   const encodedQuery = encodeBase64(query);
   const encodedVariables = encodeBase64(variables);
+  const encodedHeaders = encodeBase64(headers);
   const pathname = usePathname();
+
+  const saveHeaders = () => {
+    const parsingHeaders = JSON.parse(headers || '{}');
+    return {
+      'Content-Type': 'application/json',
+      ...(parsingHeaders || {})
+    };
+  };
 
   const handleBlur = () => {
     if (!endpointUrl) {
@@ -40,25 +48,21 @@ const GraphiQL = ({
       return;
     }
     const locale = pathname.split('/')[1];
-    const newUrl = `${window.location.origin}/${locale}/graphQlClient/GRAPHQL/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}`;
+    const newUrl = `${window.location.origin}/${locale}/graphQlClient/GRAPHQL/${encodedUrl}?query=${encodedQuery}&variables=${encodedVariables}&headers=${encodedHeaders}`;
     window.history.replaceState({}, '', newUrl);
   };
 
   const handleExecuteQuery = async () => {
-    console.log('EXECUTE');
     try {
       const res = await fetch(endpointUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(headers || {})
-        },
+        headers: saveHeaders(),
         body: JSON.stringify({
           query,
           variables: JSON.parse(variables || '{}')
         })
       });
-      console.log('HERE');
+
       const result = await res.json();
       localStorage.setItem('graphql_query', query);
       setResponse(result);
@@ -73,21 +77,6 @@ const GraphiQL = ({
     } catch (error) {
       console.error('Error:', (error as Error).message);
       toast.error('Error: Check your query, please');
-    }
-  };
-
-  const handleHeadersChange = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    try {
-      const headersObject = JSON.parse(event.target.value);
-      if (typeof headersObject === 'object' && headersObject !== null) {
-        setHeaders(headersObject);
-      } else {
-        console.error('Invalid headers format');
-      }
-    } catch (error) {
-      toast.error(`Error parsing headers: ${(error as Error).message}`);
     }
   };
 
@@ -146,10 +135,7 @@ const GraphiQL = ({
         <QueryEditor query={query} setQuery={setQuery} onBlur={handleBlur} />
         <div className="mt-4 flex space-x-4">
           <VariablesEditor variables={variables} setVariables={setVariables} />
-          <HeaderEditor
-            headers={headers}
-            onHeadersChange={handleHeadersChange}
-          />
+          <HeaderEditor headers={headers} setHeaders={setHeaders} />
         </div>
       </section>
       <ResponseViewer response={response} status={status} />

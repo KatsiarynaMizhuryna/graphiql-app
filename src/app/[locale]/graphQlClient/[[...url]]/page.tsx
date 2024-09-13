@@ -12,12 +12,11 @@ const GraphQLClientPage = ({ params }: { params: { url?: string[] } }) => {
     : '';
   const decodedQuery = queryParam ? decodeBase64(queryParam) : '';
   const decodedVariables = variablesParam ? decodeBase64(variablesParam) : '';
-  const decodedSdlUrl = `${decodedUrl}?sdl`;
+
   return (
     <div>
       <GraphiQL
         initialEndpointUrl={decodedUrl}
-        initialSdlEndpointUrl={decodedSdlUrl}
         initialQuery={decodedQuery}
         initialVariables={decodedVariables}
       />
