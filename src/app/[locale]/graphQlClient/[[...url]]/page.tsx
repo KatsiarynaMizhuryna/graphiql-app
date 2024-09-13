@@ -16,14 +16,14 @@ const GraphQLClientPage = ({ params }: { params: { url?: string[] } }) => {
   const decodedHeaders = headersParam ? decodeBase64(headersParam) : '';
 
   return (
-    <div>
+    <main className="min-h-screen">
       <GraphiQL
         initialEndpointUrl={decodedUrl}
         initialQuery={decodedQuery}
         initialVariables={decodedVariables}
         initialHeaders={decodedHeaders}
       />
-    </div>
+    </main>
   );
 };
 
