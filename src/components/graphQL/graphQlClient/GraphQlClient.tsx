@@ -14,6 +14,8 @@ import toggleDrawer from '@/utils/toggleDrawer';
 import encodeBase64 from '@/utils/encodeBase64';
 import saveToHistory from '@/utils/saveToHistory';
 import { usePathname } from 'next/navigation';
+import TextButton from '@/ui/textButton';
+import handleToggleVisibility from '@/utils/handleToggleVisibility';
 
 const GraphiQL = ({
   initialEndpointUrl = '',
@@ -34,6 +36,10 @@ const GraphiQL = ({
   const encodedVariables = encodeBase64(variables);
   const encodedHeaders = encodeBase64(headers);
   const pathname = usePathname();
+  const [selectedEditor, setSelectedEditor] = useState('variables editor');
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const variablesEditor = 'variables editor';
+  const headersEditor = 'headers editor';
 
   const saveHeaders = () => {
     const parsingHeaders = JSON.parse(headers || '{}');
@@ -135,9 +141,47 @@ const GraphiQL = ({
           </div>
         </div>
         <QueryEditor query={query} setQuery={setQuery} onBlur={handleBlur} />
-        <div className="mt-4 flex space-x-4">
-          <VariablesEditor variables={variables} setVariables={setVariables} />
-          <HeaderEditor headers={headers} setHeaders={setHeaders} />
+        <div className="bg-zinc-300 text-white p-4 rounded-lg mt-2">
+          <div className="flex justify-between items-center mb-2">
+            <div className="flex space-x-2">
+              <TextButton
+                buttonText="Variables"
+                onClick={() => setSelectedEditor(variablesEditor)}
+                isActive={selectedEditor === variablesEditor}
+              />
+              <TextButton
+                buttonText="Headers"
+                onClick={() => setSelectedEditor(headersEditor)}
+                isActive={selectedEditor === headersEditor}
+              />
+            </div>
+            <button
+              className={`transition-transform ${isVisible ? 'rotate-180' : ''} p-2`}
+              onClick={() =>
+                handleToggleVisibility({ isVisible, setIsVisible })
+              }
+              aria-label="Toggle section"
+            >
+              <span
+                className={`${isVisible ? 'rotate-180' : ''} text-black text-2xl`}
+              >
+                ▼
+              </span>
+            </button>
+          </div>
+          {isVisible && (
+            <div className=" p-4 rounded-lg">
+              {selectedEditor === variablesEditor && (
+                <VariablesEditor
+                  variables={variables}
+                  setVariables={setVariables}
+                />
+              )}
+              {selectedEditor === headersEditor && (
+                <HeaderEditor headers={headers} setHeaders={setHeaders} />
+              )}
+            </div>
+          )}
         </div>
       </section>
       <ResponseViewer response={response} status={status} />
