@@ -3,7 +3,6 @@
 import React from 'react';
 import { MethodRequestProps } from '@/types/client';
 import InputRequest from '@/ui/inputRequest';
-// import { useTranslations } from 'next-intl';
 
 const MethodRequest: React.FC<MethodRequestProps> = ({
   url,
@@ -11,8 +10,6 @@ const MethodRequest: React.FC<MethodRequestProps> = ({
   method,
   setMethod
 }) => {
-  // const t = useTranslations('RestClientPage');
-
   return (
     <div className="">
       <InputRequest

@@ -1,92 +1,82 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { BodyEditorProps } from '@/types/client';
 
 const ReactJson = dynamic(() => import('react-json-view'), { ssr: false });
 
-interface BodyEditorProps {
-  initialContent: string;
-  isReadOnly: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: any; // JSON object from API
-}
-
 const BodyEditor: React.FC<BodyEditorProps> = ({
-  initialContent,
+  content,
+  setContent,
   isReadOnly,
   data
 }) => {
-  const [content, setContent] = useState(initialContent); // JSON data in text format
-  const [error, setError] = useState<string | null>(null); // Error message if JSON is invalid
+  const [error, setError] = useState<string | null>(null);
 
-  // Merge API data into the content JSON
-  const mergeApiData = (jsonContent: string, apiData: any) => {
+  const mergeApiData = (jsonContent: string, apiData: {}) => {
     try {
       const contentObj = JSON.parse(jsonContent);
       const mergedContent = { ...contentObj, ...apiData };
       return JSON.stringify(mergedContent, null, 2);
     } catch {
-      // If content is invalid JSON, return it as is
       return jsonContent;
     }
   };
 
-  // Validate JSON format
   const validateJson = (json: string) => {
     try {
-      JSON.parse(json); // If parsing succeeds, the JSON is valid
-      setError(null); // Clear the error
+      JSON.parse(json);
+      setError(null);
     } catch (e) {
       const error = e as Error;
       console.error(error.message);
-      setError('Invalid JSON format'); // Set error message
+      setError('Invalid JSON format');
     }
   };
 
-  // Handle changes in textarea and validate the JSON
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const updatedContent = e.target.value;
-    setContent(updatedContent);
-    validateJson(updatedContent); // Check JSON validity on each change
+    if (!isReadOnly && setContent) {
+      setContent(updatedContent);
+    }
+    validateJson(updatedContent);
   };
 
-  // Prettify the JSON
   const prettifyJson = () => {
     try {
       if (!content.trim()) {
-        throw new Error('Content is empty'); // Empty input check
+        throw new Error('Content is empty');
       }
 
-      let jsonObject = JSON.parse(content); // Parse string as JSON
+      let jsonObject = JSON.parse(content);
 
       if (typeof jsonObject !== 'object' || jsonObject === null) {
-        throw new Error('Invalid JSON format'); // Validate JSON structure
+        throw new Error('Invalid JSON format');
       }
 
-      // Merge API data into the JSON if provided
       if (data) {
         jsonObject = { ...jsonObject, ...data };
       }
 
-      setContent(JSON.stringify(jsonObject, null, 2)); // Format JSON with indentation
-      setError(null); // Clear error if everything succeeds
+      if (!isReadOnly && setContent) {
+        setContent(JSON.stringify(jsonObject, null, 2));
+      }
+      setError(null);
     } catch (e) {
-      setError((e as Error).message || 'Invalid JSON format'); // Show error message
+      setError((e as Error).message || 'Invalid JSON format');
     }
   };
 
-  // Update JSON content with API data when `data` prop changes
   useEffect(() => {
     if (data) {
       const updatedContent = mergeApiData(content, data);
-      setContent(updatedContent);
+      if (!isReadOnly && setContent) {
+        setContent(updatedContent);
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [content, data, isReadOnly, setContent]);
 
   return (
     <div className="p-4 border w-full">
-      {/* Prettify Button */}
       {!isReadOnly && (
         <div className="flex justify-between items-center mb-2">
           <button
@@ -98,13 +88,10 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
         </div>
       )}
 
-      {/* Error message if JSON is invalid */}
       {error && <p className="text-red-500 mb-2">{error}</p>}
 
-      {/* Show JSON based on mode (read-only or editable) */}
       {isReadOnly ? (
         <div className="border p-2 bg-gray-100">
-          {/* Render JSON in read-only mode */}
           <ReactJson
             src={content ? JSON.parse(content) : {}}
             name={false}

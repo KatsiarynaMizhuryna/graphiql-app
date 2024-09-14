@@ -1,18 +1,16 @@
-'use client';
-
+import React from 'react';
 import BodyEditor from '@/ui/editor';
-// import { useTranslations } from 'next-intl';
 
-const BodyRequest = () => {
-  // const t = useTranslations('RestClientPage');
-  // const data = {
+interface BodyRequestProps {
+  body: string;
+  setBody: (body: string) => void;
+}
 
-  // }
-
+const BodyRequest: React.FC<BodyRequestProps> = ({ body, setBody }) => {
   return (
-    <div className="">
+    <div>
       <div>Body</div>
-      <BodyEditor />
+      <BodyEditor content={body} setContent={setBody} isReadOnly={false} />
     </div>
   );
 };

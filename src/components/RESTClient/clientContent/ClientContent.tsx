@@ -1,6 +1,5 @@
 'use client';
 
-// import { useTranslations } from 'next-intl';
 import MethodRequest from '../methodRequest/MethodRequest';
 import Headers from '../headers/Headers';
 import BodyRequest from '../BodyRequest/BodyRequest';
@@ -10,18 +9,18 @@ import { useEffect, useState } from 'react';
 import StatusRequest from '../statusRequest/statusRequest';
 import Variables from '../variables/Variables';
 import { Variable } from '@/types/client';
+import { Button } from '@/ui/button';
+import { sendRequest } from './sendRequest';
 
 const ClientContent = () => {
   const locale = useLocale();
-  // const t = useTranslations('RestClientPage');
-
-  //const { method, setMethod, url, setUrl, body, setBody, headers, setHeaders } = useRequest();
   const [method, setMethod] = useState('GET');
   const [url, setUrl] = useState('');
   const [header, setHeaders] = useState<Variable[]>([]);
   const [variables, setVariables] = useState<Variable[]>([]);
-  // const [body, setBody] = useState('');
-  // const [request, setRequest] = useState('');
+  const [body, setBody] = useState('');
+  const [responseStatus, setResponseStatus] = useState(null);
+  const [responseData, setResponseData] = useState(null);
 
   const router = useRouter();
 
@@ -47,9 +46,10 @@ const ClientContent = () => {
       setUrl(url.split('?')[0]);
     }
   }, [variables, url]);
-  console.log(variables);
-  console.log(header);
-  console.log('url', url);
+
+  const handleSendRequest = () => {
+    sendRequest(method, url, header, body, setResponseStatus, setResponseData);
+  };
 
   return (
     <div className="w-full flex justify-evenly gap-[30px] flex-wrap md:flex-nowrap">
@@ -61,6 +61,7 @@ const ClientContent = () => {
             method={method}
             setMethod={setMethod}
           />
+          <Button onClick={handleSendRequest}>Send</Button>
         </div>
         <div className="">
           <Headers variables={header} setVariables={setHeaders} />
@@ -69,11 +70,11 @@ const ClientContent = () => {
           <Variables variables={variables} setVariables={setVariables} />
         </div>
         <div className="">
-          <BodyRequest />
+          <BodyRequest body={body} setBody={setBody} />
         </div>
       </div>
       <div className="w-full md:w-[40%] md:min-w-[330px]">
-        <StatusRequest />
+        <StatusRequest status={responseStatus} data={responseData} />
       </div>
     </div>
   );

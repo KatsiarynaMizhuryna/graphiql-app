@@ -24,3 +24,20 @@ export interface MethodRequestProps {
   method: string;
   setMethod: (method: string) => void;
 }
+
+export interface BodyEditorProps {
+  content: string;
+  setContent?: (content: string) => void;
+  isReadOnly: boolean;
+  data?: {};
+}
+
+export interface BodyRequestProps {
+  body: string;
+  setBody: (body: string) => void;
+}
+
+export interface StatusRequestProps {
+  status: number | null;
+  data: {};
+}
