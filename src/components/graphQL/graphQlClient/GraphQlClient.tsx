@@ -17,6 +17,7 @@ import { usePathname } from 'next/navigation';
 import TextButton from '@/ui/textButton';
 import handleToggleVisibility from '@/utils/handleToggleVisibility';
 import { useTranslations } from 'next-intl';
+import decodeBase64 from '@/utils/decodeBase64';
 
 const GraphiQL = ({
   initialEndpointUrl = '',
@@ -77,6 +78,7 @@ const GraphiQL = ({
       localStorage.setItem('graphql_query', query);
       setResponse(result);
       setStatus(res.status.toString());
+      console.log(decodeBase64('invalid base64 string'));
       saveToHistory({
         encodedUrl,
         encodedQuery,
