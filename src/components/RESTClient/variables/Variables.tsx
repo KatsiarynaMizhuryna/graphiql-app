@@ -1,6 +1,6 @@
 'use client';
 
-import { VariablesProps } from '@/types/client';
+import { VariablesProps } from '@/interfaces/client';
 import TableHeaders from '@/ui/table';
 
 const Variables = ({ variables, setVariables }: VariablesProps) => {

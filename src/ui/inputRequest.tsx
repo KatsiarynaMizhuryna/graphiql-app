@@ -1,8 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import { useLocale } from 'next-intl';
-import { MethodRequestProps } from '@/types/client';
+import { MethodRequestProps } from '@/interfaces/client';
 
 const InputRequest: React.FC<MethodRequestProps> = ({
   url,
@@ -24,18 +23,12 @@ const InputRequest: React.FC<MethodRequestProps> = ({
   };
 
   return (
-    <div className="">
+    <div className="w-[calc(100%-75px)]">
       <label
         htmlFor="url"
         className="inline-flex items-center text-sm font-medium leading-6 text-gray-900"
       >
-        <Image
-          src="/icon/graphQL.png"
-          alt="GraphQl icon"
-          width={30}
-          height={30}
-          className="rounded-[10%] mr-4 transform hover:scale-105"
-        />
+        <div className="text-">URL: </div>
         {url ? url : 'Untitled Request'}
       </label>
       <div className="relative mt-2 rounded-md shadow-sm flex items-center">

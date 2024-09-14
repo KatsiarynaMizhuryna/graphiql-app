@@ -1,4 +1,6 @@
-import { Variable } from '@/types/client';
+import { Variable } from '@/interfaces/client';
+import { saveRequestToUserHistory } from '@/store/localStorage';
+import toast from 'react-hot-toast';
 
 export const sendRequest = async (
   method: string,
@@ -6,7 +8,9 @@ export const sendRequest = async (
   header: Variable[],
   body: string,
   setResponseStatus: (status: number | null) => void,
-  setResponseData: (data: {}) => void
+  setResponseData: (data: {}) => void,
+  uid: string,
+  variables: Variable[]
 ) => {
   try {
     const headersObject = header.reduce(
@@ -26,7 +30,7 @@ export const sendRequest = async (
       headersObject['Content-Type'] = 'application/json';
     }
 
-    const requestUrl = url.trim();
+    const requestUrl = url.trim() || '';
 
     const response = await fetch(requestUrl, {
       method: method.toUpperCase(),
@@ -46,9 +50,25 @@ export const sendRequest = async (
 
     setResponseStatus(response.status);
     setResponseData(responseData);
+
+    const newRequest = {
+      client: 'restClient',
+      request: {
+        date: new Date().toISOString(),
+        method: method,
+        url: url,
+        header: header,
+        body: body,
+        response: responseData,
+        variables: variables,
+        status: response.status.toString()
+      }
+    };
+
+    saveRequestToUserHistory(uid, newRequest);
   } catch (e) {
     const error = e as Error;
-    console.error('Error:', error.message);
+    toast.error(`Error: ${error.message}`);
 
     setResponseStatus(null);
     setResponseData(error.toString());

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MethodRequestProps } from '@/types/client';
+import { MethodRequestProps } from '@/interfaces/client';
 import InputRequest from '@/ui/inputRequest';
 
 const MethodRequest: React.FC<MethodRequestProps> = ({
@@ -11,14 +11,12 @@ const MethodRequest: React.FC<MethodRequestProps> = ({
   setMethod
 }) => {
   return (
-    <div className="">
-      <InputRequest
-        url={url}
-        setUrl={setUrl}
-        method={method}
-        setMethod={setMethod}
-      />
-    </div>
+    <InputRequest
+      url={url}
+      setUrl={setUrl}
+      method={method}
+      setMethod={setMethod}
+    />
   );
 };
 

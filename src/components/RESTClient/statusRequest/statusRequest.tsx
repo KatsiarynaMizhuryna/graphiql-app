@@ -1,6 +1,6 @@
 'use client';
 
-import { StatusRequestProps } from '@/types/client';
+import { StatusRequestProps } from '@/interfaces/client';
 import BodyEditor from '@/ui/editor';
 
 const StatusRequest: React.FC<StatusRequestProps> = ({ status, data }) => {

@@ -1,4 +1,4 @@
-import { Variable } from '@/types/client';
+import { Variable } from '@/interfaces/client';
 
 export const addEmptyRow = (
   variablesList: Variable[],

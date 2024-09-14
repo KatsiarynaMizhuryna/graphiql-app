@@ -3,30 +3,29 @@
 import MethodRequest from '../methodRequest/MethodRequest';
 import Headers from '../headers/Headers';
 import BodyRequest from '../BodyRequest/BodyRequest';
-import { useLocale } from 'next-intl';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import StatusRequest from '../statusRequest/statusRequest';
 import Variables from '../variables/Variables';
-import { Variable } from '@/types/client';
+import { Variable } from '@/interfaces/client';
 import { Button } from '@/ui/button';
 import { sendRequest } from './sendRequest';
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const ClientContent = () => {
-  const locale = useLocale();
+  // user
+  const auth = getAuth();
+  const [user] = useAuthState(auth);
+  const uid = user?.uid;
+  // console.log(uid)
+
   const [method, setMethod] = useState('GET');
   const [url, setUrl] = useState('');
   const [header, setHeaders] = useState<Variable[]>([]);
   const [variables, setVariables] = useState<Variable[]>([]);
   const [body, setBody] = useState('');
-  const [responseStatus, setResponseStatus] = useState(null);
-  const [responseData, setResponseData] = useState(null);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    router.replace(`/${locale}/restClient/${method}`);
-  }, [locale, method, router]);
+  const [responseStatus, setResponseStatus] = useState<number | null>(null);
+  const [responseData, setResponseData] = useState<object | string>('');
 
   useEffect(() => {
     const checkedVariables = variables.filter(
@@ -48,28 +47,42 @@ const ClientContent = () => {
   }, [variables, url]);
 
   const handleSendRequest = () => {
-    sendRequest(method, url, header, body, setResponseStatus, setResponseData);
+    if (uid) {
+      sendRequest(
+        method,
+        url,
+        header,
+        body,
+        setResponseStatus,
+        setResponseData,
+        uid,
+        variables
+      );
+    }
   };
+  console.log(method);
 
   return (
     <div className="w-full flex justify-evenly gap-[30px] flex-wrap md:flex-nowrap">
       <div className="flex flex-col w-full md:w-[50%] md:min-w-[360px]">
-        <div className="">
+        <div className="flex">
           <MethodRequest
             url={url}
             setUrl={setUrl}
             method={method}
             setMethod={setMethod}
           />
-          <Button onClick={handleSendRequest}>Send</Button>
+          <div className="w-[65px] pt-[30px] pl-[10px]">
+            <Button onClick={handleSendRequest}>Send</Button>
+          </div>
         </div>
-        <div className="">
+        <div>
           <Headers variables={header} setVariables={setHeaders} />
         </div>
-        <div className="">
+        <div>
           <Variables variables={variables} setVariables={setVariables} />
         </div>
-        <div className="">
+        <div>
           <BodyRequest body={body} setBody={setBody} />
         </div>
       </div>

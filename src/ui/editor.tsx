@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-import { BodyEditorProps } from '@/types/client';
+import { BodyEditorProps } from '@/interfaces/client';
+import toast from 'react-hot-toast';
 
 const ReactJson = dynamic(() => import('react-json-view'), { ssr: false });
 
@@ -28,7 +29,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
       setError(null);
     } catch (e) {
       const error = e as Error;
-      console.error(error.message);
+      toast.error(`Error: ${error.message}`);
       setError('Invalid JSON format');
     }
   };
@@ -62,7 +63,9 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
       }
       setError(null);
     } catch (e) {
-      setError((e as Error).message || 'Invalid JSON format');
+      const error = e as Error;
+      toast.error(`Error: ${error.message}`);
+      setError(error.message || 'Invalid JSON format');
     }
   };
 

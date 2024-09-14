@@ -1,4 +1,4 @@
-import { Variable, VariablesProps } from '@/types/client';
+import { Variable, VariablesProps } from '@/interfaces/client';
 import { addEmptyRow } from '@/utils/addEmptyRow';
 import React, { useEffect } from 'react';
 
