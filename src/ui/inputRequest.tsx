@@ -1,23 +1,22 @@
 'use client';
 
-import { SetStateAction, useState } from 'react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
+import { MethodRequestProps } from '@/types/client';
 
-const InputRequest = () => {
+const InputRequest: React.FC<MethodRequestProps> = ({
+  url,
+  setUrl,
+  method,
+  setMethod
+}) => {
   const locale = useLocale();
-  const [url, setUrl] = useState('');
-  const [method, setMethod] = useState('GET');
 
-  const handleUrlChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
   };
 
-  const handleMethodChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const handleMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedMethod = e.target.value;
     setMethod(selectedMethod);
     const urlWithMethod = `/${locale}/restClient/${selectedMethod}`;
@@ -25,7 +24,7 @@ const InputRequest = () => {
   };
 
   return (
-    <div className="w-[100vw] min-w-[360px] mx-auto sm:max-w-[1000px] sm:min-w-[360px] lg:max-w-[1000px]">
+    <div className="">
       <label
         htmlFor="url"
         className="inline-flex items-center text-sm font-medium leading-6 text-gray-900"

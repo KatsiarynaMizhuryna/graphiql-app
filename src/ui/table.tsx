@@ -1,40 +1,95 @@
-import React from 'react';
+import { Variable, VariablesProps } from '@/types/client';
+import { addEmptyRow } from '@/utils/addEmptyRow';
+import React, { useEffect } from 'react';
 
-const TableHeaders = () => {
+const TableHeaders = ({ variables, setVariables }: VariablesProps) => {
+  const headers = ['Key', 'Value', 'Description'];
+
+  useEffect(() => {
+    if (variables.length === 0) {
+      setVariables([{ checked: false, key: '', value: '', description: '' }]);
+    }
+  }, [setVariables, variables.length]);
+
+  const handleCheckboxChange =
+    (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      let newVariables = [...variables];
+      newVariables[index].checked = event.target.checked;
+
+      newVariables = addEmptyRow(newVariables, index);
+
+      setVariables(newVariables);
+    };
+
+  const handleInputChange =
+    (index: number, field: keyof Omit<Variable, 'checked'>) =>
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      let newVariables = [...variables];
+      newVariables[index][field] = event.target.value;
+
+      newVariables = addEmptyRow(newVariables, index);
+
+      setVariables(newVariables);
+    };
+
   return (
-    <div className="table w-full p-2">
-      <table className="w-full border">
-        <thead>
-          <tr className="bg-gray-50 border-b">
-            <th className="border-r p-2"></th>
-            <th className="p-2 border-r cursor-pointer text-sm font-thin text-gray-500">
-              <div className="flex items-center justify-center">Key</div>
-            </th>
-            <th className="p-2 border-r cursor-pointer text-sm font-thin text-gray-500">
-              <div className="flex items-center justify-center">Value</div>
-            </th>
-            <th className="p-2 border-r cursor-pointer text-sm font-thin text-gray-500">
-              <div className="flex items-center justify-center">
-                Description
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="bg-gray-50 text-center">
-            <td className="p-2 border-r w-[40px]"></td>
-            <td className="p-2 border-r">
-              <input type="text" className="border p-1" />
-            </td>
-            <td className="p-2 border-r">
-              <input type="text" className="border p-1" />
-            </td>
-            <td className="p-2 border-r">
-              <input type="text" className="border p-1" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="table-container w-full max-h-[200px] overflow-x-auto custom-scrollbar">
+      <div className="table w-full overflow-y-auto">
+        <table className="w-full border">
+          <thead>
+            <tr className="bg-gray-50 border-b">
+              <th className="border-r p-2"></th>
+              {headers.map((header, index) => (
+                <th
+                  key={index}
+                  className="p-2 border-r cursor-pointer text-sm font-thin text-gray-500"
+                >
+                  <div className="flex items-center justify-center">
+                    {header}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {variables.map((variable, rowIndex) => (
+              <tr key={rowIndex} className="bg-gray-50 text-center">
+                <td className="p-2 border-r w-[40px]">
+                  <input
+                    type="checkbox"
+                    checked={variable.checked}
+                    onChange={handleCheckboxChange(rowIndex)}
+                  />
+                </td>
+                <td className="p-2 border-r">
+                  <input
+                    type="text"
+                    className="border p-1 w-full"
+                    value={variable.key}
+                    onChange={handleInputChange(rowIndex, 'key')}
+                  />
+                </td>
+                <td className="p-2 border-r">
+                  <input
+                    type="text"
+                    className="border p-1 w-full"
+                    value={variable.value}
+                    onChange={handleInputChange(rowIndex, 'value')}
+                  />
+                </td>
+                <td className="p-2 border-r">
+                  <input
+                    type="text"
+                    className="border p-1 w-full"
+                    value={variable.description}
+                    onChange={handleInputChange(rowIndex, 'description')}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

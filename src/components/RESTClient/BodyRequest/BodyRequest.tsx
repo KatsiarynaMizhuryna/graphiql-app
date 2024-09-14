@@ -5,6 +5,9 @@ import BodyEditor from '@/ui/editor';
 
 const BodyRequest = () => {
   // const t = useTranslations('RestClientPage');
+  // const data = {
+
+  // }
 
   return (
     <div className="">

@@ -1,18 +1,26 @@
 'use client';
 
+import React from 'react';
+import { MethodRequestProps } from '@/types/client';
 import InputRequest from '@/ui/inputRequest';
-import { Button } from '@/ui/button';
 // import { useTranslations } from 'next-intl';
 
-const MethodRequest = () => {
+const MethodRequest: React.FC<MethodRequestProps> = ({
+  url,
+  setUrl,
+  method,
+  setMethod
+}) => {
   // const t = useTranslations('RestClientPage');
 
   return (
-    <div className="flex items-end gap-[20px]">
-      <InputRequest />
-      <Button onClick={() => console.log('Click')} disabled={false}>
-        Send
-      </Button>
+    <div className="">
+      <InputRequest
+        url={url}
+        setUrl={setUrl}
+        method={method}
+        setMethod={setMethod}
+      />
     </div>
   );
 };

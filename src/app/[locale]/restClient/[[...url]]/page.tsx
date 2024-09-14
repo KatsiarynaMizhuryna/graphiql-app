@@ -4,7 +4,7 @@ import ClientContent from '@/components/RESTClient/clientContent/ClientContent';
 
 const RestClientPage = () => {
   return (
-    <main className="flex-grow flex flex-col gap-[50px] items-center justify-around p-24">
+    <main className="flex-grow gap-[50px] items-center justify-between px-24 py-5 max-[1000px]:p-7 max-[700px]:px-5">
       <ClientContent />
     </main>
   );
