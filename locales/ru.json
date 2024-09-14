@@ -96,7 +96,8 @@
   "Errors": {
     "endpoint_required": "Требуется URL конечной точки",
     "check_query": "Ошибка: Проверьте ваш запрос, пожалуйста",
-    "valid_graphQL_endpoint": "Пожалуйста, укажите правильную GraphQL-конечную точку"
+    "valid_graphQL_endpoint": "Пожалуйста, укажите правильную GraphQL-конечную точку",
+    "saving_to_history": "Ошибка сохранения в историю"
   },
   "loading": "Загрузка...",
   "buttons": {
