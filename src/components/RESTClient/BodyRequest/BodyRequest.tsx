@@ -3,14 +3,23 @@ import BodyEditor from '@/ui/editor';
 
 interface BodyRequestProps {
   body: string;
+  method: string;
   setBody: (body: string) => void;
 }
 
-const BodyRequest: React.FC<BodyRequestProps> = ({ body, setBody }) => {
+const BodyRequest: React.FC<BodyRequestProps> = ({ body, method, setBody }) => {
+  const isReadOnly =
+    method === 'GET' || method === 'OPTIONS' || method === 'HEAD';
+
   return (
     <div>
       <div>Body</div>
-      <BodyEditor content={body} setContent={setBody} isReadOnly={false} />
+      <BodyEditor
+        content={body}
+        setContent={setBody}
+        isReadOnly={isReadOnly}
+        method={method}
+      />
     </div>
   );
 };

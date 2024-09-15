@@ -30,6 +30,7 @@ export interface BodyEditorProps {
   setContent?: (content: string) => void;
   isReadOnly: boolean;
   data?: {};
+  method?: string;
 }
 
 export interface BodyRequestProps {

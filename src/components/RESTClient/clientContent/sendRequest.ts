@@ -32,11 +32,17 @@ export const sendRequest = async (
 
     const requestUrl = url.trim() || '';
 
-    const response = await fetch(requestUrl, {
+    // Если body не пустой и метод требует body, включаем его в запрос
+    const requestOptions: RequestInit = {
       method: method.toUpperCase(),
-      headers: headersObject,
-      body: shouldIncludeBody ? JSON.stringify(JSON.parse(body)) : undefined
-    });
+      headers: headersObject
+    };
+
+    if (shouldIncludeBody && body.trim()) {
+      requestOptions.body = JSON.stringify(JSON.parse(body));
+    }
+
+    const response = await fetch(requestUrl, requestOptions);
 
     const responseText = await response.text();
     let responseData;
@@ -45,8 +51,6 @@ export const sendRequest = async (
     } catch {
       responseData = responseText;
     }
-
-    //console.log('Response:', responseData);
 
     setResponseStatus(response.status);
     setResponseData(responseData);

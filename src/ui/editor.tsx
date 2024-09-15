@@ -3,54 +3,35 @@ import { BodyEditorProps } from '@/interfaces/client';
 import toast from 'react-hot-toast';
 import JSONView from '@uiw/react-json-view';
 
-type JsonViewUpdate = {
-  updated_src: object;
-};
-
 const BodyEditor: React.FC<BodyEditorProps> = ({
   content,
   setContent,
   isReadOnly,
+  method = 'GET',
   data
 }) => {
   const [error, setError] = useState<string | null>(null);
+  const [localContent, setLocalContent] = useState<string>(content || '');
 
-  const mergeApiData = (jsonContent: string, apiData: {}) => {
-    try {
-      const contentObj = JSON.parse(jsonContent);
-      const mergedContent = { ...contentObj, ...apiData };
-      return JSON.stringify(mergedContent, null, 2);
-    } catch {
-      return jsonContent;
-    }
-  };
-
-  const validateJson = (json: string) => {
-    try {
-      JSON.parse(json);
-      setError(null);
-    } catch (e) {
-      const error = e as Error;
-      toast.error(`Error: ${error.message}`);
-      setError('Invalid JSON format');
-    }
-  };
-
-  const handleContentChange = (updatedContent: unknown) => {
-    const { updated_src } = updatedContent as JsonViewUpdate;
-    if (!isReadOnly && setContent) {
-      setContent(JSON.stringify(updated_src, null, 2));
-    }
-    validateJson(JSON.stringify(updated_src, null, 2));
-  };
+  useEffect(() => {
+    setLocalContent(content || '');
+  }, [content]);
 
   const prettifyJson = () => {
     try {
-      if (!content.trim()) {
-        throw new Error('Content is empty');
+      if (!localContent?.trim()) {
+        if (method === 'POST') {
+          if (setContent) {
+            setContent('');
+          }
+          setError(null);
+          return;
+        } else {
+          throw new Error('Content is empty');
+        }
       }
 
-      let jsonObject = JSON.parse(content);
+      let jsonObject = JSON.parse(localContent);
 
       if (typeof jsonObject !== 'object' || jsonObject === null) {
         throw new Error('Invalid JSON format');
@@ -60,9 +41,13 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
         jsonObject = { ...jsonObject, ...data };
       }
 
+      const prettyJson = JSON.stringify(jsonObject, null, 2);
+
       if (!isReadOnly && setContent) {
-        setContent(JSON.stringify(jsonObject, null, 2));
+        setContent(prettyJson);
       }
+
+      setLocalContent(prettyJson);
       setError(null);
     } catch (e) {
       const error = e as Error;
@@ -71,14 +56,48 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
     }
   };
 
-  useEffect(() => {
-    if (data) {
-      const updatedContent = mergeApiData(content, data);
-      if (!isReadOnly && setContent) {
-        setContent(updatedContent);
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newValue = e.target.value;
+    setLocalContent(newValue);
+
+    if (newValue.trim() === '') {
+      if (setContent) setContent('');
+      setError(null);
+    } else if (!isValidJson(newValue)) {
+      toast.error('Invalid JSON format. Please fix the input.');
+      setError('Invalid JSON format');
+    } else {
+      setError(null);
+      if (setContent) {
+        setContent(newValue);
       }
     }
-  }, [content, data, isReadOnly, setContent]);
+  };
+
+  const isValidJson = (jsonString: string): boolean => {
+    try {
+      if (jsonString.trim() === '') {
+        return method === 'POST';
+      }
+      const parsed = JSON.parse(jsonString);
+      return typeof parsed === 'object' && parsed !== null;
+    } catch (e) {
+      const error = e as Error;
+      toast.error(error.message);
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    if (['GET', 'HEAD', 'OPTIONS'].includes(method)) {
+      setLocalContent('');
+      setError(null);
+
+      if (setContent) {
+        setContent('');
+      }
+    }
+  }, [method, setContent]);
 
   return (
     <div className="p-4 border w-full">
@@ -95,21 +114,33 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
 
       {error && <p className="text-red-500 mb-2">{error}</p>}
 
-      {isReadOnly ? (
-        <div className="border p-2 bg-gray-100">
-          <JSONView
-            value={content ? JSON.parse(content) : {}}
-            style={{ overflowX: 'auto' }}
-            collapsed={false}
+      {!isReadOnly ? (
+        <div>
+          <textarea
+            placeholder={
+              ['GET', 'HEAD', 'OPTIONS'].includes(method)
+                ? 'Request body is not required for this method'
+                : 'Enter JSON here...'
+            }
+            value={localContent}
+            onChange={handleTextareaChange}
+            className="w-full p-2 border custom-scrollbar"
+            rows={10}
+            disabled={['GET', 'HEAD', 'OPTIONS'].includes(method)}
           />
         </div>
       ) : (
-        <JSONView
-          value={content ? JSON.parse(content) : {}}
-          onChange={(updatedContent) => handleContentChange(updatedContent)}
-          style={{ overflowX: 'auto' }}
-          collapsed={false}
-        />
+        <div className="border p-2 bg-gray-100">
+          {localContent?.trim() ? (
+            <JSONView
+              value={JSON.parse(localContent)}
+              style={{ overflowX: 'auto' }}
+              collapsed={false}
+            />
+          ) : (
+            <div>No content to display</div>
+          )}
+        </div>
       )}
     </div>
   );

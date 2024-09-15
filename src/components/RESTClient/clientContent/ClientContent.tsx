@@ -59,7 +59,6 @@ const ClientContent = () => {
       );
     }
   };
-  console.log(method);
 
   return (
     <div className="w-full flex justify-evenly gap-[30px] flex-wrap md:flex-nowrap">
@@ -82,7 +81,7 @@ const ClientContent = () => {
           <Variables variables={variables} setVariables={setVariables} />
         </div>
         <div>
-          <BodyRequest body={body} setBody={setBody} />
+          <BodyRequest body={body} setBody={setBody} method={method} />
         </div>
       </div>
       <div className="w-full md:w-[40%] md:min-w-[330px]">
