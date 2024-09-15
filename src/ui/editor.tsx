@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BodyEditorProps } from '@/interfaces/client';
 import toast from 'react-hot-toast';
 import JSONView from '@uiw/react-json-view';
+import { useTranslations } from 'next-intl';
 
 const BodyEditor: React.FC<BodyEditorProps> = ({
   content,
@@ -10,6 +11,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
   method = 'GET',
   data
 }) => {
+  const t = useTranslations('RestClientPage');
   const [error, setError] = useState<string | null>(null);
   const [localContent, setLocalContent] = useState<string>(content || '');
 
@@ -27,14 +29,14 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
           setError(null);
           return;
         } else {
-          throw new Error('Content is empty');
+          throw new Error(`${t('message')}`);
         }
       }
 
       let jsonObject = JSON.parse(localContent);
 
       if (typeof jsonObject !== 'object' || jsonObject === null) {
-        throw new Error('Invalid JSON format');
+        throw new Error(`${t('messageInvalidJSON')}`);
       }
 
       if (data) {
@@ -52,7 +54,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
     } catch (e) {
       const error = e as Error;
       toast.error(`Error: ${error.message}`);
-      setError(error.message || 'Invalid JSON format');
+      setError(error.message || `${t('messageInvalidJSON')}`);
     }
   };
 
@@ -64,8 +66,8 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
       if (setContent) setContent('');
       setError(null);
     } else if (!isValidJson(newValue)) {
-      toast.error('Invalid JSON format. Please fix the input.');
-      setError('Invalid JSON format');
+      toast.error(`${t('messageInvalidJSON')}`);
+      setError(`${t('messageInvalidJSON')}`);
     } else {
       setError(null);
       if (setContent) {
@@ -138,7 +140,7 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
               collapsed={false}
             />
           ) : (
-            <div>No content to display</div>
+            <div>{t('message')}</div>
           )}
         </div>
       )}

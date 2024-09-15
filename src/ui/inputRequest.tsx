@@ -1,8 +1,7 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { MethodRequestProps } from '@/interfaces/client';
-import { useEffect } from 'react';
 
 const InputRequest: React.FC<MethodRequestProps> = ({
   url,
@@ -11,13 +10,7 @@ const InputRequest: React.FC<MethodRequestProps> = ({
   setMethod
 }) => {
   const locale = useLocale();
-
-  useEffect(() => {
-    if (!url) {
-      const urlWithMethod = `/${locale}/restClient/${method}`;
-      window.history.replaceState(null, '', urlWithMethod);
-    }
-  }, [locale, method, url, setUrl, setMethod]);
+  const t = useTranslations('RestClientPage');
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
@@ -37,7 +30,7 @@ const InputRequest: React.FC<MethodRequestProps> = ({
         className="inline-flex items-center text-sm font-medium leading-6 text-gray-900"
       >
         <div className="text-">URL: </div>
-        {url ? url : 'Untitled Request'}
+        {url ? url : `${t('URL')}`}
       </label>
       <div className="relative mt-2 rounded-md shadow-sm flex items-center">
         <div className="absolute inset-y-0 left-0 flex items-center">

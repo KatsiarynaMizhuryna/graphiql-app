@@ -78,7 +78,18 @@
     "documentation": "Documentation"
   },
   "RestClientPage": {
-    "title": "REST Client"
+    "URL": "Untitled Request",
+    "Headers": "Headers",
+    "Variables": "Variables",
+    "Body": "Body",
+    "Status": "Status",
+    "message": "No content to display",
+    "messageInvalidJSON": "Invalid JSON format",
+    "Key": "Key",
+    "Value": "Value",
+    "Description": "Description",
+    "StatusMessage": "No Status",
+    "Send": "Send"
   },
   "HistoryPage": {
     "title": "History",

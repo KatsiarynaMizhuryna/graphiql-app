@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 export const sendRequest = async (
   method: string,
   url: string,
+  urlPanel: string,
   header: Variable[],
   body: string,
   setResponseStatus: (status: number | null) => void,
@@ -31,6 +32,10 @@ export const sendRequest = async (
     }
 
     const requestUrl = url.trim() || '';
+    if (!requestUrl) {
+      toast.error('Request is empty');
+      return;
+    }
 
     const requestOptions: RequestInit = {
       method: method.toUpperCase(),
@@ -41,6 +46,9 @@ export const sendRequest = async (
       requestOptions.body = JSON.stringify(JSON.parse(body));
     }
 
+    if (!requestUrl) {
+      toast.error('Request is empty');
+    }
     const response = await fetch(requestUrl, requestOptions);
 
     const responseText = await response.text();
@@ -59,7 +67,7 @@ export const sendRequest = async (
       request: {
         date: new Date().toISOString(),
         method: method,
-        url: url,
+        url: urlPanel,
         header: header,
         body: body,
         response: responseData,

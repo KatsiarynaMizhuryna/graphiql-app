@@ -1,9 +1,11 @@
 import { Variable, VariablesProps } from '@/interfaces/client';
 import { addEmptyRow } from '@/utils/addEmptyRow';
+import { useTranslations } from 'next-intl';
 import React, { useEffect } from 'react';
 
 const TableHeaders = ({ variables, setVariables }: VariablesProps) => {
-  const headers = ['Key', 'Value', 'Description'];
+  const t = useTranslations('RestClientPage');
+  const headers = [`${t('Key')}`, `${t('Value')}`, `${t('Description')}`];
 
   useEffect(() => {
     if (variables.length === 0) {
