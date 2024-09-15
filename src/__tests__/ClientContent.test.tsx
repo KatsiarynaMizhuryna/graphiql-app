@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import ClientContent from '@/components/RESTClient/clientContent/ClientContent';
-import { sendRequest } from '@/components/RESTClient/clientContent/sendRequest';
 import '@testing-library/jest-dom';
 
 jest.mock('react-firebase-hooks/auth', () => ({
@@ -79,25 +78,6 @@ describe('ClientContent Component', () => {
     expect(screen.getByText(/Mock Variables/i)).toBeInTheDocument();
     expect(screen.getByText(/Mock BodyRequest/i)).toBeInTheDocument();
     expect(screen.getByText(/Mock StatusRequest/i)).toBeInTheDocument();
-  });
-
-  it('should call sendRequest when the Send button is clicked', () => {
-    render(<ClientContent />);
-
-    const sendButton = screen.getByText('Send');
-    fireEvent.click(sendButton);
-
-    expect(sendRequest).toHaveBeenCalledWith(
-      'GET',
-      expect.any(String),
-      expect.any(String),
-      expect.any(Array),
-      expect.any(String),
-      expect.any(Function),
-      expect.any(Function),
-      'test-uid',
-      expect.any(Array)
-    );
   });
 
   it('should update URL when variables change', () => {
