@@ -8,7 +8,6 @@ const ResponseViewer: React.FC<ResponseViewerProps> = ({
 }) => {
   const statusColor = status === '200' ? 'text-green-800' : 'text-red-500';
   const t = useTranslations('GraphClientPage');
-
   return (
     <section className="w-2/5 bg-zinc-300 p-4 rounded-lg">
       <div className="bg-zinc-300 text-gray-400 p-4 h-full rounded-lg">

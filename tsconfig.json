@@ -31,7 +31,8 @@
     "src/**/*",
     ".next/types/**/*.ts",
     "src/middleware.ts",
-    "src/i18n.ts"
+    "src/i18n.ts",
+    "jest.polyfills.js"
   ],
   "exclude": ["node_modules"]
 }

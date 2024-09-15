@@ -38,7 +38,7 @@ export interface prettifyQueryProps {
 }
 
 export interface ResponseViewerProps {
-  response: string | undefined;
+  response: string | undefined | null;
   status: string;
 }
 

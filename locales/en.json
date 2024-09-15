@@ -104,7 +104,8 @@
   "Errors": {
     "endpoint_required": "'Error: Endpoint URL is required.'",
     "check_query": "'Error: Check your query, please'",
-    "valid_graphQL_endpoint": "Please provide a valid GraphQL endpoint."
+    "valid_graphQL_endpoint": "Please provide a valid GraphQL endpoint.",
+    "saving_to_history": "Error saving to history"
   },
   "loading": {
     "loading": "Loading..."
