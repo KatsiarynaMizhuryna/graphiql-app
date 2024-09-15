@@ -29,7 +29,7 @@ const GraphiQL = ({
 }) => {
   const auth = getAuth();
   const [user] = useAuthState(auth);
-  const uid = user!.uid;
+  const uid = user?.uid;
   const [endpointUrl, setEndpointUrl] = useState<string>(initialEndpointUrl);
   const [sdlUrl, setSdlUrl] = useState<string>(initialEndpointUrl);
   const [headers, setHeaders] = useState<string>(initialHeaders);
@@ -93,7 +93,9 @@ const GraphiQL = ({
           body: encodedQuery
         }
       };
-      saveRequestToUserHistory(uid, UserRequestGraph);
+      if (uid) {
+        saveRequestToUserHistory(uid, UserRequestGraph);
+      }
     } catch (error) {
       console.error('Error:', (error as Error).message);
       toast.error(tt('check_query'));
