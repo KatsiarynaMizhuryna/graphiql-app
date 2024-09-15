@@ -94,7 +94,9 @@
     "check_query": "'Error: Check your query, please'",
     "valid_graphQL_endpoint": "Please provide a valid GraphQL endpoint."
   },
-  "loading": "Loading...",
+  "loading": {
+    "loading": "Loading..."
+  },
   "buttons": {
     "redirect": {
       "restClient": "REST Client",
