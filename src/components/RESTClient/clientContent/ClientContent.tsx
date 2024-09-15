@@ -19,11 +19,8 @@ const ClientContent = () => {
   const auth = getAuth();
   const [user] = useAuthState(auth);
   const uid = user?.uid;
-  // url panel
   const [urlPanel, setUrlPanel] = useState('');
-
   const locale = useLocale();
-
   const [method, setMethod] = useState('GET');
   const [url, setUrl] = useState('');
   const [header, setHeaders] = useState<Variable[]>([]);
