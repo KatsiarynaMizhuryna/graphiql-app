@@ -17,7 +17,6 @@ const ClientContent = () => {
   const auth = getAuth();
   const [user] = useAuthState(auth);
   const uid = user?.uid;
-  // console.log(uid)
 
   const [method, setMethod] = useState('GET');
   const [url, setUrl] = useState('');
