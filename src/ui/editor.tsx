@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import { BodyEditorProps } from '@/interfaces/client';
 import toast from 'react-hot-toast';
+import JSONView from '@uiw/react-json-view';
 
-const ReactJson = dynamic(() => import('react-json-view'), { ssr: false });
+type JsonViewUpdate = {
+  updated_src: object;
+};
 
 const BodyEditor: React.FC<BodyEditorProps> = ({
   content,
@@ -34,12 +36,12 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
     }
   };
 
-  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const updatedContent = e.target.value;
+  const handleContentChange = (updatedContent: unknown) => {
+    const { updated_src } = updatedContent as JsonViewUpdate;
     if (!isReadOnly && setContent) {
-      setContent(updatedContent);
+      setContent(JSON.stringify(updated_src, null, 2));
     }
-    validateJson(updatedContent);
+    validateJson(JSON.stringify(updated_src, null, 2));
   };
 
   const prettifyJson = () => {
@@ -95,18 +97,18 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
 
       {isReadOnly ? (
         <div className="border p-2 bg-gray-100">
-          <ReactJson
-            src={content ? JSON.parse(content) : {}}
-            name={false}
+          <JSONView
+            value={content ? JSON.parse(content) : {}}
+            style={{ overflowX: 'auto' }}
             collapsed={false}
           />
         </div>
       ) : (
-        <textarea
-          className="w-full p-2 border min-h-[200px] bg-white"
-          value={content}
-          onChange={handleContentChange}
-          placeholder="Enter JSON here"
+        <JSONView
+          value={content ? JSON.parse(content) : {}}
+          onChange={(updatedContent) => handleContentChange(updatedContent)}
+          style={{ overflowX: 'auto' }}
+          collapsed={false}
         />
       )}
     </div>
