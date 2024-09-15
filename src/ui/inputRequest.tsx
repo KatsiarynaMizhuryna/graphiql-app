@@ -15,7 +15,6 @@ const InputRequest: React.FC<MethodRequestProps> = ({
   useEffect(() => {
     if (!url) {
       const urlWithMethod = `/${locale}/restClient/${method}`;
-      setUrl(urlWithMethod);
       window.history.replaceState(null, '', urlWithMethod);
     }
   }, [locale, method, url, setUrl, setMethod]);

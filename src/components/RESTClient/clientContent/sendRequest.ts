@@ -46,7 +46,7 @@ export const sendRequest = async (
       responseData = responseText;
     }
 
-    console.log('Response:', responseData);
+    //console.log('Response:', responseData);
 
     setResponseStatus(response.status);
     setResponseData(responseData);
