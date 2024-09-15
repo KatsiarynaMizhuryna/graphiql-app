@@ -32,7 +32,6 @@ export const sendRequest = async (
 
     const requestUrl = url.trim() || '';
 
-    // Если body не пустой и метод требует body, включаем его в запрос
     const requestOptions: RequestInit = {
       method: method.toUpperCase(),
       headers: headersObject
