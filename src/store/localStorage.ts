@@ -47,10 +47,8 @@ export const saveRequestToUserHistory = (
     string,
     User
   >;
-
   if (users[uid]) {
     const user = users[uid];
-
     user.history = [...(user.history || []), newRequest];
 
     users[uid] = user;

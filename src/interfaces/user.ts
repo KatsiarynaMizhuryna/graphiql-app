@@ -18,11 +18,13 @@ export interface UserRequest {
     method: string;
     url: string;
     SDL?: string;
-    header: Variable[];
+    header?: Variable[];
+    headers?: string;
+    variable?: string;
     body: string;
-    response: {};
+    response?: {};
     variables?: Variable[];
     Documentation?: string;
-    status: string;
+    status?: string;
   };
 }

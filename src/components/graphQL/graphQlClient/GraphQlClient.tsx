@@ -12,11 +12,14 @@ import IconButton from '@/ui/iconButton';
 import prettifyQuery from '@/utils/prettifyQuery';
 import toggleDrawer from '@/utils/toggleDrawer';
 import encodeBase64 from '@/utils/encodeBase64';
-import saveToHistory from '@/utils/saveToHistory';
 import { usePathname } from 'next/navigation';
 import TextButton from '@/ui/textButton';
 import handleToggleVisibility from '@/utils/handleToggleVisibility';
 import { useTranslations } from 'next-intl';
+import { saveRequestToUserHistory } from '@/store/localStorage';
+import { getAuth } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { UserRequest } from '@/interfaces/user';
 
 const GraphiQL = ({
   initialEndpointUrl = '',
@@ -24,6 +27,9 @@ const GraphiQL = ({
   initialVariables = '',
   initialHeaders = ''
 }) => {
+  const auth = getAuth();
+  const [user] = useAuthState(auth);
+  const uid = user!.uid;
   const [endpointUrl, setEndpointUrl] = useState<string>(initialEndpointUrl);
   const [sdlUrl, setSdlUrl] = useState<string>(initialEndpointUrl);
   const [headers, setHeaders] = useState<string>(initialHeaders);
@@ -74,17 +80,20 @@ const GraphiQL = ({
       });
 
       const result = await res.json();
-      localStorage.setItem('graphql_query', query);
       setResponse(result);
       setStatus(res.status.toString());
-      saveToHistory({
-        encodedUrl,
-        encodedQuery,
-        encodedVariables,
-        encodedHeaders,
-        method: 'GRAPHQL',
-        localStorageKey: 'graphql_requests'
-      });
+      const UserRequestGraph: UserRequest = {
+        client: 'graphQlClient',
+        request: {
+          date: new Date().toISOString(),
+          method: 'GRAPHQL',
+          url: encodedUrl,
+          headers: encodedHeaders,
+          variable: encodedVariables,
+          body: encodedQuery
+        }
+      };
+      saveRequestToUserHistory(uid, UserRequestGraph);
     } catch (error) {
       console.error('Error:', (error as Error).message);
       toast.error(tt('check_query'));
