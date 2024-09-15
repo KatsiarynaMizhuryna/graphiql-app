@@ -13,7 +13,6 @@ import { getAuth } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const ClientContent = () => {
-  // user
   const auth = getAuth();
   const [user] = useAuthState(auth);
   const uid = user?.uid;
