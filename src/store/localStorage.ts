@@ -1,4 +1,4 @@
-import { User } from '@/interfaces/user';
+import { User, UserRequest } from '@/interfaces/user';
 import toast from 'react-hot-toast';
 
 export const saveUserToLocalStorage = (uid: string, email: string) => {
@@ -36,5 +36,24 @@ export const logOutUserToLocalStorage = (uid: string) => {
     localStorage.setItem('users', JSON.stringify(users));
   } else {
     toast.error('User with id not found');
+  }
+};
+
+export const saveRequestToUserHistory = (
+  uid: string,
+  newRequest: UserRequest
+) => {
+  const users = JSON.parse(localStorage.getItem('users') || '{}') as Record<
+    string,
+    User
+  >;
+  if (users[uid]) {
+    const user = users[uid];
+    user.history = [...(user.history || []), newRequest];
+
+    users[uid] = user;
+    localStorage.setItem('users', JSON.stringify(users));
+  } else {
+    toast.error('User not found in localStorage');
   }
 };

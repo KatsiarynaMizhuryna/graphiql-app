@@ -78,11 +78,23 @@
     "documentation": "Documentation"
   },
   "RestClientPage": {
-    "title": "REST Client"
+    "URL": "Untitled Request",
+    "Headers": "Headers",
+    "Variables": "Variables",
+    "Body": "Body",
+    "Status": "Status",
+    "message": "No content to display",
+    "messageInvalidJSON": "Invalid JSON format",
+    "Key": "Key",
+    "Value": "Value",
+    "Description": "Description",
+    "StatusMessage": "No Status",
+    "Send": "Send"
   },
   "HistoryPage": {
     "title": "History",
-    "subTitle": "You have not executed any requests yet"
+    "subTitle": "You have not executed any requests yet",
+    "loading": "Loading..."
   },
   "NotFoundPage": {
     "title": "Not Found",
@@ -95,7 +107,9 @@
     "valid_graphQL_endpoint": "Please provide a valid GraphQL endpoint.",
     "saving_to_history": "Error saving to history"
   },
-  "loading": "Loading...",
+  "loading": {
+    "loading": "Loading..."
+  },
   "buttons": {
     "redirect": {
       "restClient": "REST Client",

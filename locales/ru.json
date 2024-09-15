@@ -78,7 +78,18 @@
     "documentation": "Документация"
   },
   "RestClientPage": {
-    "title": "Страница REST клиента"
+    "URL": "Нет точки АПИ",
+    "Headers": "Заголовок",
+    "Variables": "Переменные",
+    "Body": "Тело",
+    "Status": "Статус",
+    "message": "Нет данных для отображения",
+    "messageInvalidJSON": "Невалидный JSON",
+    "Key": "Ключ",
+    "Value": "Значение",
+    "Description": "Описание",
+    "StatusMessage": "Нет статуса",
+    "Send": "Отправить"
   },
   "HistoryPage": {
     "title": "История",
@@ -99,7 +110,9 @@
     "valid_graphQL_endpoint": "Пожалуйста, укажите правильную GraphQL-конечную точку",
     "saving_to_history": "Ошибка сохранения в историю"
   },
-  "loading": "Загрузка...",
+  "loading": {
+    "loading": "Загрузка..."
+  },
   "buttons": {
     "redirect": {
       "restClient": "REST Клиент",
