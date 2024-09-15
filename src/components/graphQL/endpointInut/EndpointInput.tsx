@@ -23,6 +23,7 @@ const EndpointInput: React.FC<EndpointInputProps> = ({
         {t('endpoint_url')}:
       </label>
       <input
+        id="endpointUrl"
         type="text"
         value={endpointUrl}
         onChange={handleChange}
@@ -35,6 +36,7 @@ const EndpointInput: React.FC<EndpointInputProps> = ({
         SDL URL:
       </label>
       <input
+        id="sdlUrl"
         type="text"
         value={sdlUrl}
         onChange={handleChange}
