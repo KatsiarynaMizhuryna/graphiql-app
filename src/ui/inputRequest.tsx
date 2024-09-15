@@ -2,6 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { MethodRequestProps } from '@/interfaces/client';
+import { useEffect } from 'react';
 
 const InputRequest: React.FC<MethodRequestProps> = ({
   url,
@@ -10,6 +11,14 @@ const InputRequest: React.FC<MethodRequestProps> = ({
   setMethod
 }) => {
   const locale = useLocale();
+
+  useEffect(() => {
+    if (!url) {
+      const urlWithMethod = `/${locale}/restClient/${method}`;
+      setUrl(urlWithMethod);
+      window.history.replaceState(null, '', urlWithMethod);
+    }
+  }, [locale, method, url, setUrl, setMethod]);
 
   const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
