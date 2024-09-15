@@ -82,7 +82,8 @@
   },
   "HistoryPage": {
     "title": "History",
-    "subTitle": "You have not executed any requests yet"
+    "subTitle": "You have not executed any requests yet",
+    "loading": "Loading..."
   },
   "NotFoundPage": {
     "title": "Not Found",
