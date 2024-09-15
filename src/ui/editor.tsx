@@ -36,11 +36,12 @@ const BodyEditor: React.FC<BodyEditorProps> = ({
     }
   };
 
-  const handleContentChange = (updatedContent: JsonViewUpdate) => {
+  const handleContentChange = (updatedContent: unknown) => {
+    const { updated_src } = updatedContent as JsonViewUpdate;
     if (!isReadOnly && setContent) {
-      setContent(JSON.stringify(updatedContent.updated_src, null, 2));
+      setContent(JSON.stringify(updated_src, null, 2));
     }
-    validateJson(JSON.stringify(updatedContent.updated_src, null, 2));
+    validateJson(JSON.stringify(updated_src, null, 2));
   };
 
   const prettifyJson = () => {
