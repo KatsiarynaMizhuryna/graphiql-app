@@ -109,7 +109,9 @@
     "check_query": "Ошибка: Проверьте ваш запрос, пожалуйста",
     "valid_graphQL_endpoint": "Пожалуйста, укажите правильную GraphQL-конечную точку"
   },
-  "loading": "Загрузка...",
+  "loading": {
+    "loading": "Загрузка..."
+  },
   "buttons": {
     "redirect": {
       "restClient": "REST Клиент",
