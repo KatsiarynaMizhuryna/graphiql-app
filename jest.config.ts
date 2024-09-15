@@ -1,4 +1,6 @@
 import type {Config} from 'jest';
+import { TextEncoder } from 'node:util'
+global.TextEncoder = TextEncoder
 
 const config: Config = {  
   preset: 'ts-jest',

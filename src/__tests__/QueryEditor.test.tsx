@@ -45,7 +45,9 @@ describe('QueryEditor Component', () => {
     const query = 'query { test }';
     const setQuery = jest.fn();
     const onBlur = jest.fn();
+
     render(<QueryEditor query={query} setQuery={setQuery} onBlur={onBlur} />);
+
     const textarea = screen.getByRole('textbox');
     fireEvent.blur(textarea);
 
