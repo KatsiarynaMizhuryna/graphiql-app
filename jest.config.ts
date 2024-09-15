@@ -1,6 +1,6 @@
 import type {Config} from 'jest';
 
-const config: Config = {
+const config: Config = {  
   preset: 'ts-jest',
     testEnvironment: 'jest-environment-jsdom',
     transform: {
@@ -8,10 +8,11 @@ const config: Config = {
         'ts-jest',
         {
           tsconfig: 'tsconfig.test.json',
-          isolatedModules: true,
+          isolatedModules: true,          
         },
       ],
     },
+    
     moduleNameMapper: {
       '^@/(.*)$': '<rootDir>/src/$1',
       '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
